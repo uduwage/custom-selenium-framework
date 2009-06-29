@@ -18,7 +18,7 @@ import com.thoughtworks.selenium.Wait;
  * @author A83E1
  *
  */
-public class AbstractSeleniumDriver {
+public class AbstractSeleniumDriver extends DefaultSelenium {
 
 	protected static Selenium selenium;
 	
@@ -27,6 +27,25 @@ public class AbstractSeleniumDriver {
 	protected static String SELENIUM_BROWSER_STARTCOMMAND="selenium.browser.startCommand";
 	protected static String SELENIUM_BROWSER_URL = "selenium.browser.url";
 	
+	private String baseURL = null;
+	
+    /**
+     * Allows you to specify everything with hard coded values. Would try to use the default if possible.
+     */
+    public AbstractSeleniumDriver(String serverHost, int serverPort, String browserStartCommand,
+            String browserURL) {
+        super(serverHost, serverPort, browserStartCommand, browserURL);
+        baseURL = browserURL;
+    }
+    
+    /**
+     *  Uses custom CommandProcessor 
+     */
+    public AbstractSeleniumDriver(CannonCommandProcessor processor) {
+        super(processor);
+        baseURL = processor.getBaseURL();
+    }
+    
 	@BeforeClass
 	public static void setup() {
 		selenium = new DefaultSelenium(System.getProperty(SELENIUM_SERVER_HOST),

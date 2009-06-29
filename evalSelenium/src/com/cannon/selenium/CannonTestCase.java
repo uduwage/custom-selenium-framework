@@ -16,9 +16,9 @@ import org.junit.Before;
  * @author a83E1
  *
  */
-public class CooperTestCase {
+public class CannonTestCase {
 
-	private static final org.apache.log4j.Logger log = Logger.getLogger(CooperTestCase.class.getName());
+	private static final org.apache.log4j.Logger log = Logger.getLogger(CannonTestCase.class.getName());
 	
 	//Flag set to true when an input file is found and parse
 	private boolean inputFileFound = false;
@@ -32,7 +32,7 @@ public class CooperTestCase {
 	/**
 	 * Default Constructor
 	 */
-	public CooperTestCase() {	
+	public CannonTestCase() {	
 	}
 	
 	@Before

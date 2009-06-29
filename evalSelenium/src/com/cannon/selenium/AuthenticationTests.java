@@ -16,6 +16,11 @@ import org.junit.Assert.*;
  */
 public class AuthenticationTests extends AbstractSeleniumDriver {
 
+	public AuthenticationTests(CannonCommandProcessor processor) {
+		super(processor);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Before
 	public void setUp() {
 		selenium.setTimeout("90000");
