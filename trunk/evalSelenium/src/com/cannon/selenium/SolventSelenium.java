@@ -39,7 +39,7 @@ public class SolventSelenium extends DefaultSelenium {
     /**
      * Uses custom CommandProcessor
      */
-    public SolventSelenium(CannonCommandProcessor processor) {
+    public SolventSelenium(SolventCommandProcessor processor) {
     	super(processor);
     	baseURL = processor.getBaseURL();
     }

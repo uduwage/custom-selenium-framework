@@ -9,7 +9,7 @@ import com.thoughtworks.selenium.HttpCommandProcessor;
  * @author A83E1
  *
  */
-public class CannonCommandProcessor extends HttpCommandProcessor {
+public class SolventCommandProcessor extends HttpCommandProcessor {
 	
 	private static final String FIREFOX2_LABEL = "*cooper-firefox2";
 	private static final String FIREFOX2_EXE = "browsers/windows/firefox/Firefox2/App/firefox.exe";
@@ -24,7 +24,7 @@ public class CannonCommandProcessor extends HttpCommandProcessor {
 	private String optionsString = null;
 	private String sessionId = null;
 
-	public CannonCommandProcessor(String serverHost, int serverPort, String browserStartCommand, String browserURL) {
+	public SolventCommandProcessor(String serverHost, int serverPort, String browserStartCommand, String browserURL) {
 		
 		super(serverHost, serverPort, getFixedCommand(browserStartCommand), browserURL);
 		this.browserURL = browserURL;
