@@ -7,7 +7,7 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.cannon.selenium.CannonTestCase;
+import com.cannon.selenium.SolventTestCase;
 
 /**
  * @author a83E1
@@ -24,7 +24,7 @@ public class InputFileFinder {
 	 * @param test
 	 * @return
 	 */
-	public static InputStream getInputFileAsStream(CannonTestCase test) {
+	public static InputStream getInputFileAsStream(SolventTestCase test) {
 		return test.getClass().getClassLoader().getResourceAsStream(getInputFileNameForTest(test));
 	}
 
@@ -33,7 +33,7 @@ public class InputFileFinder {
 	 * @param test
 	 * @return
 	 */
-	private static String getInputFileNameForTest(CannonTestCase test) {
+	private static String getInputFileNameForTest(SolventTestCase test) {
 		//Check to see if we are in the default package; this happens often when we are running 
 		//from the Selenium Runner. if we are in the default package, null is returned 
 		//by the call to getPackage(). This must be handeld correctly.
