@@ -18,7 +18,7 @@ import com.thoughtworks.selenium.Wait;
  * @author A83E1
  *
  */
-public class AbstractSeleniumDriver {
+public class SolventSelenium {
 
 	protected static Selenium selenium;
 	
@@ -57,7 +57,7 @@ public class AbstractSeleniumDriver {
 	 * @param password
 	 * @return
 	 */
-	public AbstractSeleniumDriver cannonLogin(String userName, String password) {
+	public SolventSelenium cannonLogin(String userName, String password) {
 		String userLocator = "//table[@class='loginTable']//input[@id='USERNAME']";
 		String passLocator = "//table[@class='loginTable']//input[@name='PASSWORD']";
 		String submit = "//table[@class='loginTable']//input[@name='login']";
@@ -67,7 +67,7 @@ public class AbstractSeleniumDriver {
 		return this;	
 	}
 	
-	public AbstractSeleniumDriver multiUserLogin(String filename) throws InterruptedException {
+	public SolventSelenium multiUserLogin(String filename) throws InterruptedException {
 		ReadFromCSV fromCSV = new ReadFromCSV();
 		Collection<String> collection = new ArrayList<String>(fromCSV.parse(filename));
 		for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
@@ -77,32 +77,10 @@ public class AbstractSeleniumDriver {
 					String username = fromCSV.userInfo(collection).get(i);
 					String password = fromCSV.userInfo(collection).get(i+1);
 					cannonLogin(username, password);
-					yukonLogout();
 					System.out.println(username + "-" + password);
-					i += 1;
+					selenium.wait(100000);
 			}			
 		}
-		return this;
-	}
-	
-	public AbstractSeleniumDriver yukonLogout() {
-		selenium.click("//td[@class='leftMenuHeader']//a[text()='Logout']");
-		return this;
-	}
-	
-	public AbstractSeleniumDriver clickGeneral() {
-		selenium.click("//div[@class='menuOption2']//a[text() = 'General']");
-		return this;
-	}
-	
-	/**
-	 * Click any link on the left hand panel with a given link name.
-	 * @param linkName name of the link.
-	 * @return return an instance of the AbstractSeleniumDriver.
-	 */
-	public AbstractSeleniumDriver clickLeftMenuLink(String linkName) {
-		String linkLocator = "//div[@class='menuOption2']//a[text() = '" + linkName + "']";
-		selenium.click(linkLocator);
 		return this;
 	}
 }

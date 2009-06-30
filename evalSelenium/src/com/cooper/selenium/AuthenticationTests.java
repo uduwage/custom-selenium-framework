@@ -18,6 +18,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 
 	@Before
 	public void setUp() {
+		selenium.setSpeed("5000");
 		selenium.setTimeout("90000");
 	}
 	
@@ -36,9 +37,11 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			String exceptedTitle = "Energy Services Operations Center";
 			if (currentTitle.equalsIgnoreCase(exceptedTitle)) {
 				cannonLogin(fromCSV.getUsername(), fromCSV.getPassword());
-				selenium.wait(10000);
 			}
 		}
+		clickGeneral();
+		clickLeftMenuLink("Contact Us");
+		yukonLogout();
 	}
 	
 	@Test
@@ -46,17 +49,18 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 		ReadFromCSV fromCSV = new ReadFromCSV();
 		
 		String submit = "//table[@class='loginTable']//input[@name='login']";
-		//selenium.open("/");
-		//multiUserLogin("UserName_Password.csv");
-		/*
+		selenium.open("/");
+		
 		boolean submitButton = selenium.isElementPresent(submit);
 		if (submitButton) {
 			String currentTitle = selenium.getTitle();
 			String exceptedTitle = "Energy Services Operations Center";
 			if (currentTitle.equalsIgnoreCase(exceptedTitle)) {
+				//cannonLogin(fromCSV.getUsername(), fromCSV.getPassword());
 				multiUserLogin("UserName_Password.csv");
 			}
 		}
-		*/		
+				
 	}
+	
 }
