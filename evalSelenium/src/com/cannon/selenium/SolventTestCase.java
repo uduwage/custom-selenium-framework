@@ -25,7 +25,7 @@ public class SolventTestCase {
 	
 	//used to hold all selenium session opened by the test so that we can close them 
 	//all down during exit.
-	private final ArrayList<AbstractSeleniumDriver> session = new ArrayList<AbstractSeleniumDriver>();
+	private final ArrayList<SolventSelenium> session = new ArrayList<SolventSelenium>();
 	
 	private HashMap<String, Object> inputParams;
 	

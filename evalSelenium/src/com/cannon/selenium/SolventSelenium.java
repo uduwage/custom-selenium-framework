@@ -6,18 +6,26 @@ package com.cannon.selenium;
 import java.util.Arrays;
 import java.util.List;
 
+import sun.security.action.GetBooleanAction;
+
 import com.thoughtworks.selenium.DefaultSelenium;
+import com.thoughtworks.selenium.SeleniumException;
 
 /**
  * @author A83E1
  *
  */
 public class SolventSelenium extends DefaultSelenium {
-	
+
 	   private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(SolventSelenium.class.getName());
 
 	   private String baseURL = null;
-	   List<String> ID_SWAP_TYPES = Arrays.asList("object","project", "change", "library", "product", "organization", "site");	
+	   List<String> ID_SWAP_TYPES = Arrays.asList("object","project", "change", "library", "product", "organization", "site");
+	   
+	   protected static String SELENIUM_SERVER_HOST="selenium.server.host";
+	   protected static String SELENIUM_SERVER_PORT="selenium.server.port";
+	   protected static String SELENIUM_BROWSER_STARTCOMMAND="selenium.browser.startCommand";
+	   protected static String SELENIUM_BROWSER_URL = "selenium.browser.url";
 
     /**
      * Allows you to specify everything with hard coded values. Would try to use the default if possible.
@@ -75,5 +83,61 @@ public class SolventSelenium extends DefaultSelenium {
 
         return url;
 	}
+	
+	protected static String getHostname() {
+		return null;
+	}
+	
+	/**
+	 * In order it tries to get the base cannon url. <br />
+	 * 
+	 * 1) Look for a override for the base url. The override is "test.url". <br />
+	 * 2) Try to get the base url from the URLFactory(). <br />
+	 * 3) Go with the dfault http://qa008:8080/. <br />
+	 * @return
+	 */
+	protected static String getBaseHREF() {
+		if(System.getProperty("test.url") != null) {
+			String cannon = System.getProperty("test.url");
+			
+			if(!cannon.startsWith("http://"))
+				return "http://" + cannon;
+			
+			return cannon;
+		}else {
+			return System.getProperty(SELENIUM_BROWSER_URL); 
+		}
+	}
+	
+	/**
+	 * Waits for an alert to appear. This is most useful for asynchronus operation that 
+	 * create an alert dialog on completion.
+	 * @param waitTime
+	 * @return
+	 */
+	public String waitForAlert(long waitTime) {
+		while(waitTime > 0 && !isAlertPresent()) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				log.error("Wait interrupted!", e);
+			}
+			waitTime -= 1000;
+		}
+
+		if(isAlertPresent()) {
+			try {
+				return getAlert();
+			}catch (Exception e) {
+				log.error("Could not get alert. ", e);
+			}
+		}else {
+			throw new SeleniumException("Error: waitForAlert time out!");
+		}
+		return null;
+	}
+	
+	
+	
 
 }
