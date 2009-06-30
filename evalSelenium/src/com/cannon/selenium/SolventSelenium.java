@@ -12,9 +12,9 @@ import com.thoughtworks.selenium.DefaultSelenium;
  * @author A83E1
  *
  */
-public class CannonSelenium extends DefaultSelenium {
+public class SolventSelenium extends DefaultSelenium {
 	
-	   private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(CannonSelenium.class.getName());
+	   private static final org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(SolventSelenium.class.getName());
 
 	   private String baseURL = null;
 	   List<String> ID_SWAP_TYPES = Arrays.asList("object","project", "change", "library", "product", "organization", "site");	
@@ -22,7 +22,7 @@ public class CannonSelenium extends DefaultSelenium {
     /**
      * Allows you to specify everything with hard coded values. Would try to use the default if possible.
      */
-    public CannonSelenium(String serverHost, int serverPort, String browserStartCommand,
+    public SolventSelenium(String serverHost, int serverPort, String browserStartCommand,
             String browserURL) {
         super(serverHost, serverPort, browserStartCommand, browserURL);
         baseURL = browserURL;
@@ -31,7 +31,7 @@ public class CannonSelenium extends DefaultSelenium {
     /**
      * Uses custom CommandProcessor
      */
-    public CannonSelenium(CannonCommandProcessor processor) {
+    public SolventSelenium(CannonCommandProcessor processor) {
     	super(processor);
     	baseURL = processor.getBaseURL();
     }
