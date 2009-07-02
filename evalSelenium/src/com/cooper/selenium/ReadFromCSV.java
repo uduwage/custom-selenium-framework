@@ -8,11 +8,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.junit.Before;
 
 /**
- * This class will extract username and password from csv file.
+ * This an API level class will extract username and password from csv file and 
+ * return sets of data collection in multiple formats. Different Method Signature types
+ * manipulate the raw csv data file and return a data collection in etc: format of an Array, 
+ * Map.
  * @author a83E1
  * 
  */
@@ -21,9 +25,11 @@ public class ReadFromCSV {
 	private String username;
 	private String password;
 	
+	private final HashMap<String, String> parameters = new HashMap<String, String>();
+	
 	@Before
 	public void setUp() {
-		
+		//nothing at this point.
 	}
 
 	/**
@@ -45,6 +51,7 @@ public class ReadFromCSV {
 			e.printStackTrace();
 		}
 
+		/*
 		int i;
 		for (i = 0; i < userInfo(lines).size(); i++) {
 			if (i < 1) {
@@ -52,16 +59,16 @@ public class ReadFromCSV {
 				this.password = userInfo(lines).get(i+1);
 				//System.out.println(username + "-" + password);
 			}
-		}		
+		}
+		*/		
 	
 		return lines;
 	}
-
-
+	
 	/**
-	 * split the line at the end and format.
-	 * 
-	 * @param lines collection of lines
+	 * split the line at the end and format and retrun data as ArrayList. 
+	 * @param lines collection of strings as an input.
+	 * @return return an ArrayList of Strings.
 	 */
 	public ArrayList<String> userInfo(Collection<String> lines) {
 		ArrayList<String> userNamePasswordArrayList = new ArrayList<String>();
@@ -73,7 +80,24 @@ public class ReadFromCSV {
 		}
 		return userNamePasswordArrayList;
 	}
-
+	
+	/**
+	 * Analyze string collection and put username and password in Key, Value pairs.
+	 * @param lines Collection of Strings as an input.
+	 * @return returns a HashMap with username and password as Key value pairs.
+	 */
+	public HashMap<String, String> returnStringParams(Collection<String> lines) {
+		for (String line : lines) {
+			String user = line.substring(0, line.indexOf(",")).trim();
+			String pass = line.substring(line.indexOf(",")+1).trim();
+			if(!parameters.containsKey(user)) {
+				parameters.put(user, pass);
+			}
+			System.out.println(user + "=" + pass);
+		}
+		return parameters;
+	}
+	
 	/**
 	 * Reminder: File needs to be at the root level of the workspace (in
 	 * eclipse) I found this by hard way.
@@ -81,11 +105,11 @@ public class ReadFromCSV {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		new ReadFromCSV().parse("UserName_Password.csv");
-
+		ReadFromCSV readFromCSV = new ReadFromCSV();
+		Collection<String> list = readFromCSV.parse("UserName_Password.csv");
+		readFromCSV.returnStringParams(list);
 	}
-
-
+	
 	/**
 	 * Return username from csv file. 
 	 * @return username yukon app username
@@ -107,6 +131,4 @@ public class ReadFromCSV {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
 }

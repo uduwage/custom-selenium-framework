@@ -9,6 +9,9 @@ import java.util.concurrent.TimeoutException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert.*;
+import org.junit.runner.RunWith;
+
+import com.thoughtworks.selenium.SeleniumException;
 
 /**
  * @author A83E1
@@ -16,9 +19,10 @@ import org.junit.Assert.*;
  */
 public class AuthenticationTests extends AbstractSeleniumDriver {
 
+	
 	@Before
 	public void setUp() {
-		selenium.setSpeed("5000");
+		selenium.setSpeed("2000");
 		selenium.setTimeout("90000");
 	}
 	
@@ -36,16 +40,16 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			String currentTitle = selenium.getTitle();
 			String exceptedTitle = "Energy Services Operations Center";
 			if (currentTitle.equalsIgnoreCase(exceptedTitle)) {
-				cannonLogin(fromCSV.getUsername(), fromCSV.getPassword());
+				//cannonLogin(fromCSV.getUsername(), fromCSV.getPassword());
+				new AbstractSeleniumDriver().cannonLogin("41000000", "41000000").clickGeneral()
+				.clickLeftMenuLink("Contact Us")
+				.yukonLogout();				
 			}
 		}
-		clickGeneral();
-		clickLeftMenuLink("Contact Us");
-		yukonLogout();
 	}
 	
 	@Test
-	public void testUserMultiLogin() throws InterruptedException, TimeoutException {
+	public void testUserMultiLogin() throws InterruptedException, TimeoutException, FileNotFoundException {
 		ReadFromCSV fromCSV = new ReadFromCSV();
 		
 		String submit = "//table[@class='loginTable']//input[@name='login']";
@@ -56,11 +60,18 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			String currentTitle = selenium.getTitle();
 			String exceptedTitle = "Energy Services Operations Center";
 			if (currentTitle.equalsIgnoreCase(exceptedTitle)) {
-				//cannonLogin(fromCSV.getUsername(), fromCSV.getPassword());
-				multiUserLogin("UserName_Password.csv");
+				//multiUserLogin("UserName_Password.csv");
+				multipleUserLogin("Short_UserPassword.csv");
 			}
 		}
 				
+	}
+	
+	@Test
+	public void testEditFirstName() {
+		selenium.open("/");
+		new AbstractSeleniumDriver().cannonLogin("41000000", "41000000");
+		new ContactInfoPageSolvent().inputFirstName("EditName").yukonLogout();
 	}
 	
 }
