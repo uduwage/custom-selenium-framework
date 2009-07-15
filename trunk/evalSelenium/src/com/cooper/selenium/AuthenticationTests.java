@@ -8,10 +8,6 @@ import java.util.concurrent.TimeoutException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert.*;
-import org.junit.runner.RunWith;
-
-import com.thoughtworks.selenium.SeleniumException;
 
 /**
  * @author A83E1
@@ -19,7 +15,6 @@ import com.thoughtworks.selenium.SeleniumException;
  */
 public class AuthenticationTests extends AbstractSeleniumDriver {
 
-	
 	@Before
 	public void setUp() {
 		selenium.setSpeed("2000");
@@ -41,13 +36,14 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			String exceptedTitle = "Energy Services Operations Center";
 			if (currentTitle.equalsIgnoreCase(exceptedTitle)) {
 				//cannonLogin(fromCSV.getUsername(), fromCSV.getPassword());
-				new AbstractSeleniumDriver().cannonLogin("41000000", "41000000").clickGeneral()
-				.clickLeftMenuLink("Contact Us")
+				cannonLogin("41000000", "41000000").clickGeneral()
+				.clickLeftMenuLink("Contacts")
+				.clickLeftMenuLink("Opt Out")
 				.yukonLogout();				
 			}
 		}
 	}
-	
+	/*
 	@Test
 	public void testUserMultiLogin() throws InterruptedException, TimeoutException, FileNotFoundException {
 		ReadFromCSV fromCSV = new ReadFromCSV();
@@ -60,18 +56,19 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			String currentTitle = selenium.getTitle();
 			String exceptedTitle = "Energy Services Operations Center";
 			if (currentTitle.equalsIgnoreCase(exceptedTitle)) {
-				//multiUserLogin("UserName_Password.csv");
 				multipleUserLogin("Short_UserPassword.csv");
 			}
-		}
-				
+		}		
 	}
-	
+	*/
 	@Test
 	public void testEditFirstName() {
-		selenium.open("/");
-		new AbstractSeleniumDriver().cannonLogin("41000000", "41000000");
-		new ContactInfoPageSolvent().inputFirstName("EditName").yukonLogout();
+		cannonLogin("41000000", "41000000").clickGeneral()
+		.clickLeftMenuLink("Contacts");
+		new ContactInfoPageSolvent().inputFirstName("Test")
+			.selectPhoneNumberType("Fax Number")
+			.clickUpdateContact().clickInfoPageButton("Create New Contact")
+			.waitForElement("//input[@type='submit' and @value='Add notification']");
 	}
 	
 }
