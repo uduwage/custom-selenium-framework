@@ -17,6 +17,7 @@ import org.junit.BeforeClass;
 
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
+import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.Wait;
 
 /**
@@ -139,5 +140,90 @@ public class AbstractSeleniumDriver {
 		String linkLocator = "//div[@class='menuOption2']//a[text() = '" + linkName + "']";
 		selenium.click(linkLocator);
 		return this;
+	}
+	
+	/**
+	 * Simple pause method with a try/catch for the InterruptedException;
+	 * only here to keep the try/catch block out of the test code.
+	 * @param milliseconds
+	 */
+	public void pause(long milliseconds) {
+		try {
+			Thread.sleep(milliseconds);
+		}catch(InterruptedException e) {
+			//TODO:hook up to log4j
+			throw new SeleniumException("pause() interrupted! \n" + e.getMessage(), e);
+		}
+	}
+	
+	/**
+	 * Method used to wait for an element to appear on the page before continuing.
+	 * @param locator
+	 * @param wait
+	 */
+	public void waitForElement(String locator, int wait) {
+		//TODO:Should this be configurable?
+		boolean present = isElementPresent(locator, 0);
+		while(!present && wait > 0) {
+			pause(500);
+			wait -= 500;
+			present = isElementPresent(locator, 0);
+		}
+		if(!present)
+			throw new SeleniumException("Timeout while waiting for element " + locator + " to appear");
+	}
+	
+	public void waitForElement(String locator) {
+		waitForElement(locator, 5000);
+	}
+	
+	/**
+	 * Given the location method will check the if the locator exists.
+	 * @param locator
+	 * @param wait
+	 * @return
+	 */
+	public boolean isElementPresent(String locator, int wait) {
+		boolean present = selenium.isElementPresent(locator);
+		while(!present && wait > 0) {
+			pause(500);
+			wait -= 500;
+			present = selenium.isElementPresent(locator);
+		}
+		return present;
+	}
+	
+	public boolean isElementPresent(String locator) {
+		return isElementPresent(locator, 5000);
+	}
+	
+	/**
+	 * isElementPresent just verifies the element exists in the DOM
+	 * this API will also verify the element is not hidden.
+	 * @param locator
+	 * @param wait
+	 * @return
+	 */
+	public boolean isElementPresentAndVisible(String locator, int wait) {
+		if(isElementPresent(locator, wait)) {
+			return selenium.isVisible(locator);
+		}
+		return false;
+	}
+	
+	/**
+	 * Waits for the element to become visible (i.e: not hidden)
+	 * @param locator - The elements locator
+	 * @param wait - Amoutn of time in ms to wait.
+	 * @return
+	 */
+	public boolean waitForElementToBecomeVisible(String locator, int wait) {
+		while(!selenium.isVisible(locator) && wait > 0) {
+			pause(500);
+			wait -= 500;
+		}
+		if(wait < 0) //Time out throw exception 
+			throw new SeleniumException("Timeout while waiting for element " + locator +  " to become visible");
+		return selenium.isVisible(locator);
 	}
 }
