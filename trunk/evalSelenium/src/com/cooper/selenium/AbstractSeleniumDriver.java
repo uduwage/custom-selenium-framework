@@ -21,6 +21,11 @@ import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.Wait;
 
 /**
+ * This calss is used for working spcifically Cooper Web Applications. It is setup 
+ * where it will do all the communications with the Selenium Server. 
+ * TODO: In future this class should extend the DefaultSelenium, and read host, Port etc
+ * info from properties file.
+ * 
  * @author A83E1
  *
  */
@@ -115,10 +120,15 @@ public class AbstractSeleniumDriver {
 	
 	/**
 	 * Logout from Yukon webapplication.
-	 * @return
+	 * @return return instance of {@link AbstractSeleniumDriver}
 	 */
 	public AbstractSeleniumDriver yukonLogout() {
-		selenium.click("//td[@class='leftMenuHeader']//a[text()='Logout']");
+		String logoutMain = "//td[@class='leftMenuHeader']//a[text()='Logout']";
+		String logoutOther = "//a[normalize-space(text())='Logout']";
+		if(isElementPresent(logoutMain))
+			selenium.click(logoutMain);
+		else
+			selenium.click(logoutOther);
 		return this;
 	}
 	
@@ -142,6 +152,19 @@ public class AbstractSeleniumDriver {
 		return this;
 	}
 	
+	/**
+	 * Given a String value of the link, method will click any hyper link.
+	 * @param linkName string value of the link.
+	 * @return
+	 */
+	public AbstractSeleniumDriver clickLinkItem(String linkName) {
+		String linkLocator = "//a[normalize-space(text())='" + linkName + "']";
+		waitForElement(linkLocator);
+		if(!isElementPresent(linkLocator))
+			throw new SeleniumException("Unalbe to fine Link " + linkName + "check the link String.");
+		selenium.click(linkLocator);
+		return this;
+	}
 	/**
 	 * Simple pause method with a try/catch for the InterruptedException;
 	 * only here to keep the try/catch block out of the test code.
