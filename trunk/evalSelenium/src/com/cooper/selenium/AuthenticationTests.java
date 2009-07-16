@@ -77,16 +77,20 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 		ReadFromCSV fromCSV = new ReadFromCSV();
 		HashMap<String, String> userInfo = fromCSV.getParams("Short_UserPassword.csv");
 		Iterator<Entry<String, String>> i = userInfo.entrySet().iterator();
-		int count = 0;
 		while(i.hasNext()) {
 			Map.Entry<String, String> values = (Map.Entry<String, String>)i.next();
 			cannonLogin(values.getKey(), values.getValue()).clickLeftMenuLink("Contacts");
-			new ContactInfoPageSolvent().inputFirstName("Operator" + count)
+			new ContactInfoPageSolvent().inputFirstName("Operator" + values.getValue())
 				.selectPhoneNumberType("Work Phone")
 				.clickUpdateContact();
 			yukonLogout();
-			count += 1;
 		}		
+	}
+	
+	@Test
+	public void checkOperatorPage() {
+		selenium.open("/");
+		cannonLogin("anu01", "anu01").clickLinkItem("Cap Control").yukonLogout();
 	}
 	
 }
