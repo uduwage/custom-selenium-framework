@@ -4,6 +4,10 @@
 package com.cooper.selenium;
 
 import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.Before;
@@ -22,11 +26,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	}
 	
 	@Test
-	public void testUserLogin() throws InterruptedException, TimeoutException, FileNotFoundException {
-		
-		ReadFromCSV fromCSV = new ReadFromCSV();
-		fromCSV.parse("UserName_Password.csv");	
-		
+	public void testUserLogin() throws InterruptedException, TimeoutException, FileNotFoundException {	
 		String submit = "//table[@class='loginTable']//input[@name='login']";
 		selenium.open("/");
 
@@ -43,7 +43,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			}
 		}
 	}
-	/*
+	
 	@Test
 	public void testUserMultiLogin() throws InterruptedException, TimeoutException, FileNotFoundException {
 		ReadFromCSV fromCSV = new ReadFromCSV();
@@ -60,7 +60,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			}
 		}		
 	}
-	*/
+	
 	@Test
 	public void testEditFirstName() {
 		cannonLogin("41000000", "41000000").clickGeneral()
@@ -69,6 +69,24 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			.selectPhoneNumberType("Fax Number")
 			.clickUpdateContact().clickInfoPageButton("Create New Contact")
 			.waitForElement("//input[@type='submit' and @value='Add notification']");
+	}
+	
+	@Test
+	public void eachUserEditContactInfo() {
+		selenium.open("/");
+		ReadFromCSV fromCSV = new ReadFromCSV();
+		HashMap<String, String> userInfo = fromCSV.getParams("Short_UserPassword.csv");
+		Iterator<Entry<String, String>> i = userInfo.entrySet().iterator();
+		int count = 0;
+		while(i.hasNext()) {
+			Map.Entry<String, String> values = (Map.Entry<String, String>)i.next();
+			cannonLogin(values.getKey(), values.getValue()).clickLeftMenuLink("Contacts");
+			new ContactInfoPageSolvent().inputFirstName("Operator" + count)
+				.selectPhoneNumberType("Work Phone")
+				.clickUpdateContact();
+			yukonLogout();
+			count += 1;
+		}		
 	}
 	
 }
