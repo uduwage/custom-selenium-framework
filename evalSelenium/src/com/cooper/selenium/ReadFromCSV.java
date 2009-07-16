@@ -99,6 +99,34 @@ public class ReadFromCSV {
 	}
 	
 	/**
+	 * Parse data from csv file and return data in a hash map.
+	 * @param fileName name of the csv file.
+	 * @return parameters a hash map.
+	 */
+	public HashMap<String, String> getParams(String fileName) {
+		Collection<String> lines = new ArrayList<String>();
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(new File(
+					fileName)));
+			String line;
+			while ((line = br.readLine()) != null) {
+				lines.add(line);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		for (String line : lines) {
+			String user = line.substring(0, line.indexOf(",")).trim();
+			String pass = line.substring(line.indexOf(",")+1).trim();
+			if(!parameters.containsKey(user)) {
+				parameters.put(user, pass);
+			}
+			System.out.println(user + "=" + pass);
+		}
+		return parameters;		
+	}
+	
+	/**
 	 * Reminder: File needs to be at the root level of the workspace (in
 	 * eclipse) I found this by hard way.
 	 * 
