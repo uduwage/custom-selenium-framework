@@ -13,7 +13,7 @@ import com.thoughtworks.selenium.SeleniumException;
  */
 public class OperationsSolvent extends AbstractSeleniumDriver {
 
-	public OperationsSolvent() {
+	public OperationsSolvent(String...params) {
 		// TODO: Nothing to do at this point.
 	}
 	
