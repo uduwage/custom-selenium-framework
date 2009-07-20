@@ -6,7 +6,7 @@ package com.cooper.selenium;
 import com.thoughtworks.selenium.SeleniumException;
 
 /**
- * @author A83E1
+ * @author anuradha.uduwage
  *
  */
 public class ContactInfoPageSolvent extends AbstractSeleniumDriver {

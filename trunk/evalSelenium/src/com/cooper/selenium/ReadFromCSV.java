@@ -17,7 +17,8 @@ import org.junit.Before;
  * return sets of data collection in multiple formats. Different Method Signature types
  * manipulate the raw csv data file and return a data collection in etc: format of an Array, 
  * Map.
- * @author a83E1
+ * 
+ * @author anuradha.uduwage
  * 
  */
 public class ReadFromCSV {

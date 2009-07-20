@@ -26,7 +26,7 @@ import com.thoughtworks.selenium.Wait;
  * TODO: In future this class should extend the DefaultSelenium, and read host, Port etc
  * info from properties file.
  * 
- * @author A83E1
+ * @author anuradha.uduwage
  *
  */
 public class AbstractSeleniumDriver {
