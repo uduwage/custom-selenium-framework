@@ -14,7 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * @author A83E1
+ * @author anuradha.uduwage
  *
  */
 public class AuthenticationTests extends AbstractSeleniumDriver {

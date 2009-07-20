@@ -12,7 +12,7 @@ import com.thoughtworks.selenium.Selenium;
 import junit.framework.TestCase;
 
 /**
- * @author A83E1
+ * @author anuradha.uduwage
  *
  */
 public class ExampleTest extends TestCase {
