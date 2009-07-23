@@ -49,7 +49,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			}
 		}
 	}
-	/*
+	
 	@Test
 	public void testUserMultiLogin() throws InterruptedException, TimeoutException, FileNotFoundException {
 		ReadFromCSV fromCSV = new ReadFromCSV();
@@ -92,7 +92,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			yukonLogout();
 		}		
 	}
-	*/
+	
 	@Test
 	public void checkOperatorPage() {
 		selenium.open("/");
