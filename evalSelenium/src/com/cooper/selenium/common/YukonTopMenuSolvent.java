@@ -24,8 +24,7 @@ public class YukonTopMenuSolvent extends AbstractSeleniumDriver {
 	 */
 	public YukonTopMenuSolvent selectLocation(String option) {
 		String selectLocator = "//div[@id='Menu']//select[@onchange=" +
-				"'javascript:window.location=(this[this.selectedIndex].value);']" +
-				"//option[contains(text(), '" + option + "')]";
+				"'javascript:window.location=(this[this.selectedIndex].value);']";
 		this.waitForElement(selectLocator);
 		if(!this.isElementPresent(selectLocator))
 			throw new SeleniumException("Could not find 'Select Location'Drop Down Menu");
