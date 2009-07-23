@@ -12,9 +12,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
+import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
+import com.cooper.selenium.input.ReadFromCSV;
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.SeleniumException;
@@ -31,6 +33,7 @@ import com.thoughtworks.selenium.Wait;
  */
 public class AbstractSeleniumDriver {
 
+	private static final Logger log = Logger.getLogger(AbstractSeleniumDriver.class.getName());
 	protected static Selenium selenium;
 	
 	protected static String SELENIUM_SERVER_HOST="selenium.server.host";
