@@ -16,6 +16,7 @@ import org.junit.Test;
 import com.cooper.selenium.AbstractSeleniumDriver;
 import com.cooper.selenium.ReadFromCSV;
 import com.cooper.selenium.TableSolvent;
+import com.cooper.selenium.common.YukonTopMenuSolvent;
 import com.cooper.selenium.stars.ContactInfoPageSolvent;
 
 /**
@@ -48,7 +49,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			}
 		}
 	}
-	
+	/*
 	@Test
 	public void testUserMultiLogin() throws InterruptedException, TimeoutException, FileNotFoundException {
 		ReadFromCSV fromCSV = new ReadFromCSV();
@@ -91,11 +92,13 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			yukonLogout();
 		}		
 	}
-	
+	*/
 	@Test
 	public void checkOperatorPage() {
 		selenium.open("/");
 		cannonLogin("yukon", "yukon").clickLinkItem("Cap Control");
+		new YukonTopMenuSolvent().selectLocation("Metering")
+			.selectLocation("Cap Control");
 		new TableSolvent().clickTestCheckBox();
 		yukonLogout();
 	}
