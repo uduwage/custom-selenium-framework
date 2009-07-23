@@ -1,0 +1,13 @@
+To run these test in eclipse,
+Click on Run from eclipse menu bar 
+Click on Run Configurations
+Click on Junit Option Right Click and Create a new Run Configuration
+This will bring a window with options to Add a name to configuration
+Pick the Project in this case "evalSelenium"
+and Click on the radio button to Run All Test...
+Click on the Arguments tabs and add the following to the VM Arguments sections.
+
+-Dselenium.server.host=localhost
+-Dselenium.server.port=4444
+-Dselenium.browser.startCommand=*firefox
+-Dselenium.browser.url="Replace this with url of the server that you are writing tests"
