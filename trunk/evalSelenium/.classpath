@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="com/cannon/selenium/|com/pylot/xml/|com/example/tests/" kind="src" path="src"/>
+	<classpathentry excluding="com/cannon/selenium/|com/pylot/xml/|com/example/tests/|com/example/ExampleTest.java" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.6.jar"/>
