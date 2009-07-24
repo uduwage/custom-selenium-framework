@@ -95,6 +95,7 @@ public class ReadFromCSV {
 			String user = line.substring(0, line.indexOf(",")).trim();
 			String pass = line.substring(line.indexOf(",")+1).trim();
 			if(!parameters.containsKey(user)) {
+				log.info("Adding Input Param: " + user + " => " + pass);
 				parameters.put(user, pass);
 			}
 			System.out.println(user + "=" + pass);
@@ -124,9 +125,9 @@ public class ReadFromCSV {
 			String user = line.substring(0, line.indexOf(",")).trim();
 			String pass = line.substring(line.indexOf(",")+1).trim();
 			if(!parameters.containsKey(user)) {
+				log.info("Adding Input Param: " + user + " => " + pass);
 				parameters.put(user, pass);
 			}
-			System.out.println(user + "=" + pass);
 		}
 		return parameters;		
 	}
