@@ -14,9 +14,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.cooper.selenium.AbstractSeleniumDriver;
-import com.cooper.selenium.ReadFromCSV;
 import com.cooper.selenium.TableSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
+import com.cooper.selenium.input.CSVDataFileDigester;
 import com.cooper.selenium.stars.ContactInfoPageSolvent;
 
 /**
@@ -52,7 +52,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	
 	@Test
 	public void testUserMultiLogin() throws InterruptedException, TimeoutException, FileNotFoundException {
-		ReadFromCSV fromCSV = new ReadFromCSV();
+		CSVDataFileDigester fromCSV = new CSVDataFileDigester();
 		
 		String submit = "//table[@class='loginTable']//input[@name='login']";
 		selenium.open("/");
@@ -80,7 +80,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	@Test
 	public void eachUserEditContactInfo() {
 		selenium.open("/");
-		ReadFromCSV fromCSV = new ReadFromCSV();
+		CSVDataFileDigester fromCSV = new CSVDataFileDigester();
 		HashMap<String, String> userInfo = fromCSV.getParams("Short_UserPassword.csv");
 		Iterator<Entry<String, String>> i = userInfo.entrySet().iterator();
 		while(i.hasNext()) {
