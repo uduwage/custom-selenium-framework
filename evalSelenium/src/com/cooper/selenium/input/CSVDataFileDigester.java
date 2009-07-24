@@ -22,9 +22,9 @@ import org.junit.Before;
  * @author anuradha.uduwage
  * 
  */
-public class ReadFromCSV {
+public class CSVDataFileDigester {
 
-	private static final Logger log = Logger.getLogger(ReadFromCSV.class.getName());
+	private static final Logger log = Logger.getLogger(CSVDataFileDigester.class.getName());
 	private String username;
 	private String password;
 	
@@ -139,7 +139,7 @@ public class ReadFromCSV {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ReadFromCSV readFromCSV = new ReadFromCSV();
+		CSVDataFileDigester readFromCSV = new CSVDataFileDigester();
 		Collection<String> list = readFromCSV.parse("UserName_Password.csv");
 		readFromCSV.returnStringParams(list);
 	}
