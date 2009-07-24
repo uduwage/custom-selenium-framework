@@ -15,6 +15,7 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 /**
+ * This an API Level class that is defined to parse input data from XML file.
  * @author anuradha.uduwage
  *
  */
