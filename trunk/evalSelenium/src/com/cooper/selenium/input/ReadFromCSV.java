@@ -117,6 +117,7 @@ public class ReadFromCSV {
 				lines.add(line);
 			}
 		} catch (Exception e) {
+			log.error("Error attempting reading " + fileName + ".", e);
 			e.printStackTrace();
 		}
 		for (String line : lines) {
