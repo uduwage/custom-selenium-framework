@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-import com.cooper.selenium.input.ReadFromCSV;
+import com.cooper.selenium.input.CSVDataFileDigester;
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.Selenium;
 import com.thoughtworks.selenium.SeleniumException;
@@ -82,7 +82,7 @@ public class AbstractSeleniumDriver {
 	}
 	
 	public AbstractSeleniumDriver multiUserLogin(String filename) throws InterruptedException, FileNotFoundException {
-		ReadFromCSV fromCSV = new ReadFromCSV();
+		CSVDataFileDigester fromCSV = new CSVDataFileDigester();
 		Collection<String> collection = new ArrayList<String>(fromCSV.parse(filename));
 		for (Iterator iterator = collection.iterator(); iterator.hasNext();) {
 			//String string = (String) iterator.next();
@@ -107,7 +107,7 @@ public class AbstractSeleniumDriver {
 	 * @throws InterruptedException 
 	 */
 	public AbstractSeleniumDriver multipleUserLogin(String filename) throws FileNotFoundException, InterruptedException {
-		ReadFromCSV readFromCSV = new ReadFromCSV();
+		CSVDataFileDigester readFromCSV = new CSVDataFileDigester();
 		Collection<String> collection = null;
 		collection = readFromCSV.parse(filename);
 		HashMap<String, String> params = null;
