@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.cooper.selenium.AbstractSeleniumDriver;
-import com.cooper.selenium.TableSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
 import com.cooper.selenium.input.CSVDataFileDigester;
 import com.cooper.selenium.stars.ContactInfoPageSolvent;
@@ -99,7 +98,6 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 		cannonLogin("yukon", "yukon").clickLinkItem("Cap Control");
 		new YukonTopMenuSolvent().selectLocation("Metering")
 			.selectLocation("Cap Control");
-		new TableSolvent().clickTestCheckBox();
 		yukonLogout();
 	}
 	
