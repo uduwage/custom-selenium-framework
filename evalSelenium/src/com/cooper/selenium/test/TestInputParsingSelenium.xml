@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<testConfig>
+
+    <!-- Selenium Test Parameters -->
+
+    <Parameter name="Organization">
+        <value>YUKON</value>
+    </Parameter>
+
+    <Parameter name="cooper_admin">
+        <value>yukonAdmin</value>
+    </Parameter>
+
+    <Parameter name="creators">
+        <value>yukonUser1</value>
+        <value>yukonUser2</value>
+        <value>yukonUser3</value>
+    </Parameter>
+
+</testConfig>
