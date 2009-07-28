@@ -7,8 +7,9 @@ import com.cooper.selenium.AbstractSeleniumDriver;
 import com.thoughtworks.selenium.SeleniumException;
 
 /**
- * Handle all the functionalities in the operations page.
- * @author A83E1
+ * Yukon top menu bar is common for multiple areas of the application. This class 
+ * is a place holder for all the methods represent top menu bar.
+ * @author anuradha.uduwage
  *
  */
 public class YukonTopMenuSolvent extends AbstractSeleniumDriver {
