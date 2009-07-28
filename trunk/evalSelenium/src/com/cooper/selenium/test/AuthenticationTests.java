@@ -27,7 +27,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	@Before
 	public void setUp() {
 		selenium.setSpeed("2000");
-		selenium.setTimeout("90000");
+		//selenium.setTimeout("90000");
 	}
 	
 	@Test
@@ -38,6 +38,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 		boolean submitButton = selenium.isElementPresent(submit);
 		if (submitButton) {
 			String currentTitle = selenium.getTitle();
+			System.out.println(currentTitle);
 			String exceptedTitle = "Energy Services Operations Center";
 			if (currentTitle.equalsIgnoreCase(exceptedTitle)) {
 				//cannonLogin(fromCSV.getUsername(), fromCSV.getPassword());
@@ -54,7 +55,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 		CSVDataFileDigester fromCSV = new CSVDataFileDigester();
 		
 		String submit = "//table[@class='loginTable']//input[@name='login']";
-		selenium.open("/");
+		//selenium.open("/");
 		
 		boolean submitButton = selenium.isElementPresent(submit);
 		if (submitButton) {
@@ -78,7 +79,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	
 	@Test
 	public void eachUserEditContactInfo() {
-		selenium.open("/");
+		//selenium.open("/");
 		CSVDataFileDigester fromCSV = new CSVDataFileDigester();
 		HashMap<String, String> userInfo = fromCSV.getParams("Short_UserPassword.csv");
 		Iterator<Entry<String, String>> i = userInfo.entrySet().iterator();
@@ -94,7 +95,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	
 	@Test
 	public void checkOperatorPage() {
-		selenium.open("/");
+		//selenium.open("/");
 		cannonLogin("yukon", "yukon").clickLinkItem("Cap Control");
 		new YukonTopMenuSolvent().selectLocation("Metering")
 			.selectLocation("Cap Control");
