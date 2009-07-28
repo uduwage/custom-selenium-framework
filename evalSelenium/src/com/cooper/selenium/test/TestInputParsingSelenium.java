@@ -12,6 +12,7 @@ import com.cooper.selenium.SolventSeleniumTestCase;
 import com.cooper.selenium.input.InvalidDataException;
 
 /**
+ * Class to test input file module.
  * @author anuradha.uduwage
  *
  */
@@ -54,5 +55,5 @@ public class TestInputParsingSelenium extends SolventSeleniumTestCase {
 		}
 		
 		Assert.assertTrue(exceptionCaught);		
-	}
+	}	
 }
