@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- build.xml - build Cannon Selenium module. -->
+<project name="evalSelenium" default="compile" basedir=".">
+	
+	<!-- The directory containing source code -->
+	<property name="src.dir" value="src"/>
+	
+	<!-- Temporary build directories -->
+	<property name="build.dir" value="/build"/>
+	<property name="build.classes" value="${build.dir}/classes"/>
+	<property name="build.lib" value="${build.dir}/lib"/>
+	
+	<!-- location of the final jar -->
+	<property name="build.jar" value="lib"/>
+	
+	<!-- test report location -->
+	<property name="test.reports" value="${build.dir}/reports"/>
+	
+	<path id="classpath">
+		<fileset dir="${build.jar}" includes="**/*.jar"></fileset>
+	</path>
+	
+	<!-- Target to creat the build directories pripr to the compile target -->
+	<target name="prepare" description="Creating necessary file structure for build process.">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${build.classes}"/>
+		<mkdir dir="${build.lib}"/>
+		<mkdir dir="${test.reports}"/>
+	</target>
+	
+	<target name="clean" description="Remoes all generated files.">
+		<delete dir="${build.dir}"/>
+	</target>
+	
+	<target name="compile" depends="prepare" description="Compiles all source code.">
+		<javac srcdir="${src.dir}" destdir="${build.classes}" classpathref="classpath"/>
+		<copy todir="${build.classes}">
+			<fileset dir="${src.dir}" excludes="**/*.java"/>
+		</copy>
+	</target>
+	
+	<target name="jar" depends="compile" 
+			description="Generates final jar">
+		<jar jarfile="${build.lib}/yukonSelenium.jar"
+				basedir="${build.classes}"/>
+		<!--
+		<manifest>
+			<attribute name="Main-Class" value="com.cooper.selenium.test.TestAutenticationSelenium"/>
+			<attribute name="Class-Path" value="junit-4.6.jar"/>
+		</manifest>
+		</jar> -->	
+	</target>
+	
+	<target name="build-all" depends="clean, jar" 
+		description="Cleans, Compiles, then builds the JAR file">
+	</target>
+	
+	<!-- This is actually redundent becuase will not have class files beyond junit -->
+	<target name="run" depends="jar">
+		<java jar="${build.lib}/yukonSelenium.jar" fork="true">
+			<classpath>
+				<path refid="classpath"/>
+				<path id="application" location="${build.lib}/yukonSelenium.jar"/>
+			</classpath>
+		</java>	
+	</target>
+	
+	<target name="test.selenium" depends="jar" description="target to execute all the selenium tests.">
+		<junit printsummary="yes">
+			<classpath>
+				<path refid="classpath"/>
+				<path refid="application"/>
+			</classpath>
+			<batchtest fork="yes">
+				<fileset dir="${src.dir}" includes="**/Test*Selenium.java"/>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="test-report" depends="build-all" description="Generate Test Results as HTML">
+		<junit fork="yes" printsummary="yes">
+			<batchtest fork="yes" todir="${test.reports}">
+				<fileset dir="${src.dir}" includes="**/Test*Selenium.java"/>
+			</batchtest>
+			<formatter type="xml"/>
+			<classpath>
+				<path refid="classpath"/>
+				<path refid="application"/>
+			</classpath>
+		</junit>
+		
+		<junitreport todir="${test.reports}">
+			<fileset dir="${test.reports}">
+				<include name="Test-*.xml" />
+			</fileset>
+			<report todir="${test.reports}"/>
+		</junitreport>
+	</target>
+</project>
