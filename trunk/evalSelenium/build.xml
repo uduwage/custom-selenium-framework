@@ -9,23 +9,23 @@
 	<!-- Temporary build directories -->
 	<property name="build.dir" value="/build"/>
 	<property name="build.classes" value="${build.dir}/classes"/>
-	<property name="build.lib" value="${build.dir}/lib"/>
+	<property name="build.jar" value="${build.dir}/jar"/>
 	
-	<!-- location of the final jar -->
-	<property name="build.jar" value="lib"/>
+	<!-- depended jar files -->
+	<property name="build.lib" value="lib"/>
 	
 	<!-- test report location -->
 	<property name="test.reports" value="${build.dir}/reports"/>
 	
 	<path id="classpath">
-		<fileset dir="${build.jar}" includes="**/*.jar"></fileset>
+		<fileset dir="${build.lib}" includes="**/*.jar"></fileset>
 	</path>
 	
 	<!-- Target to creat the build directories pripr to the compile target -->
 	<target name="prepare" description="Creating necessary file structure for build process.">
 		<mkdir dir="${build.dir}"/>
 		<mkdir dir="${build.classes}"/>
-		<mkdir dir="${build.lib}"/>
+		<mkdir dir="${build.jar}"/>
 		<mkdir dir="${test.reports}"/>
 	</target>
 	
@@ -42,14 +42,14 @@
 	
 	<target name="jar" depends="compile" 
 			description="Generates final jar">
-		<jar jarfile="${build.lib}/yukonSelenium.jar"
-				basedir="${build.classes}"/>
-		<!--
+		<jar jarfile="${build.jar}/yukonSelenium.jar"
+				basedir="${build.classes}">
+		
 		<manifest>
-			<attribute name="Main-Class" value="com.cooper.selenium.test.TestAutenticationSelenium"/>
-			<attribute name="Class-Path" value="junit-4.6.jar"/>
+			<attribute name="Main-Class" value="com.cooper.selenium.test.TestAuthenticationSelenium"/>
+			<!-- <attribute name="Class-Path" value="junit-4.6.jar"/> -->
 		</manifest>
-		</jar> -->	
+		</jar>
 	</target>
 	
 	<target name="build-all" depends="clean, jar" 
@@ -58,10 +58,10 @@
 	
 	<!-- This is actually redundent becuase will not have class files beyond junit -->
 	<target name="run" depends="jar">
-		<java jar="${build.lib}/yukonSelenium.jar" fork="true">
+		<java jar="${build.jar}/yukonSelenium.jar" fork="true">
 			<classpath>
 				<path refid="classpath"/>
-				<path id="application" location="${build.lib}/yukonSelenium.jar"/>
+				<path id="application" location="${build.jar}/yukonSelenium.jar"/>
 			</classpath>
 		</java>	
 	</target>
