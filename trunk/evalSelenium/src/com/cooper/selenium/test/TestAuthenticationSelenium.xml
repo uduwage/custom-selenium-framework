@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<testConfig>
+
+    <!-- Selenium Test Parameters -->
+
+    <Parameter name="username">
+        <value>yukon</value>
+    </Parameter>
+
+    <Parameter name="password">
+        <value>yukon</value>
+    </Parameter>
+    
+    <Parameter name="users">
+        <value>41000000</value>
+        <value>41000001</value>
+        <value>41000002</value>
+    </Parameter>
+
+    <Parameter name="passwords">
+        <value>41000000</value>
+        <value>41000001</value>
+        <value>41000002</value>
+    </Parameter>
+
+</testConfig>
