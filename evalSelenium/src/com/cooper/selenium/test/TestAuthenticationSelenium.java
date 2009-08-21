@@ -10,7 +10,6 @@ import org.junit.Test;
 import com.cooper.selenium.SolventSeleniumTestCase;
 import com.cooper.selenium.common.LoginLogoutSolvent;
 import com.cooper.selenium.common.OperationsPageSolvent;
-import com.cooper.selenium.common.PopupMenuSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
 import com.cooper.selenium.stars.StarsGeneralSolvent;
 
@@ -32,11 +31,12 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 			.navigateTo(new OperationsPageSolvent()).clickLinkItem("Cap Control")
 			.navigateTo(new YukonTopMenuSolvent()).clickHome();
 		
-		PopupMenuSolvent popupMenuSolvent = new PopupMenuSolvent();
-		popupMenuSolvent.selectNewLocation("Metering");
-		
 		YukonTopMenuSolvent menuSolvent = new YukonTopMenuSolvent();
+		menuSolvent.selectALocation("Bulk Importer");
+		menuSolvent.clickHome();
 		menuSolvent.selectALocation("Reporting");
+		menuSolvent.clickHome();
+		menuSolvent.selectALocation("Metering");
 		menuSolvent.clickHome();
 		
 		operationPage.yukonLogout();
@@ -54,12 +54,21 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 			if((passwords.length != 0) && (passwords.length == users.length)) {
 				loginLogoutSolvent.cannonLogin(users[i], passwords[i]);
 				generalSolvent.clickGeneral();
+				generalSolvent.clickStarsLeftMenuLink("Contacts");
+				generalSolvent.clickStarsLeftMenuLink(users[i]);
+				generalSolvent.clickStarsLeftMenuLink("Schedule");
+				generalSolvent.clickStarsLeftMenuLink("Control History");
+				generalSolvent.clickStarsLeftMenuLink("Enrollment");
 				generalSolvent.clickStarsLeftMenuLink("Opt Out");
 				loginLogoutSolvent.yukonLogout();
 				
 			}
 		}
 	}
-
+	/**
+	public static void main(String[] args) {
+		org.junit.runner.JUnitCore.main("com.cooper.selenium.test.TestAuthenticationSelenium");
+	}
+	*/
 
 }
