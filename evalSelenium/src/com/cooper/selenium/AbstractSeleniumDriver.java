@@ -31,6 +31,7 @@ import com.thoughtworks.selenium.Wait;
  * @author anuradha.uduwage
  *
  */
+@Deprecated
 public class AbstractSeleniumDriver {
 
 	private static final Logger log = Logger.getLogger(AbstractSeleniumDriver.class.getName());
