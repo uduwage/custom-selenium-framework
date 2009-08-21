@@ -79,12 +79,10 @@ public class LoginLogoutSolvent extends AbstractSolvent {
 	 * @return return instance of {@link LoginLogoutSolvent}
 	 */
 	public LoginLogoutSolvent yukonLogout() {
-		String logoutMain = "//td[@class='leftMenuHeader']//a[text()='Logout']";
-		String logoutOther = "//a[normalize-space(text())='Logout']";
-		if(selenium.isElementPresent(logoutMain))
-			selenium.click(logoutMain);
-		else
-			selenium.click(logoutOther);
+		String logout = "//a[normalize-space(text())='Logout']";
+		selenium.waitForElement(logout);
+		if(selenium.isElementPresent(logout))
+			selenium.click(logout);
 		return this;
 	}	
 }
