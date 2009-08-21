@@ -19,17 +19,19 @@ import com.cooper.selenium.input.CSVDataFileDigester;
 import com.cooper.selenium.stars.ContactInfoPageSolvent;
 
 /**
+ * 
  * @author anuradha.uduwage
  *
  */
+@Deprecated
 public class AuthenticationTests extends AbstractSeleniumDriver {
 
 	@Before
 	public void setUp() {
 		selenium.setSpeed("2000");
-		//selenium.setTimeout("90000");
+		selenium.setTimeout("90000");
 	}
-	
+	/*
 	@Test
 	public void testUserLogin() throws InterruptedException, TimeoutException, FileNotFoundException {	
 		String submit = "//table[@class='loginTable']//input[@name='login']";
@@ -69,7 +71,8 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	
 	@Test
 	public void testEditFirstName() {
-		cannonLogin("41000000", "41000000").clickGeneral()
+		selenium.open("/");
+		cannonLogin("yukon", "yukon").clickGeneral()
 		.clickLeftMenuLink("Contacts");
 		new ContactInfoPageSolvent().inputFirstName("Test")
 			.selectPhoneNumberType("Fax Number")
@@ -79,7 +82,7 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 	
 	@Test
 	public void eachUserEditContactInfo() {
-		//selenium.open("/");
+		selenium.open("/");
 		CSVDataFileDigester fromCSV = new CSVDataFileDigester();
 		HashMap<String, String> userInfo = fromCSV.getParams("Short_UserPassword.csv");
 		Iterator<Entry<String, String>> i = userInfo.entrySet().iterator();
@@ -92,13 +95,14 @@ public class AuthenticationTests extends AbstractSeleniumDriver {
 			yukonLogout();
 		}		
 	}
-	
+	*/
 	@Test
 	public void checkOperatorPage() {
-		//selenium.open("/");
+		selenium.open("/");
 		cannonLogin("yukon", "yukon").clickLinkItem("Cap Control");
-		new YukonTopMenuSolvent().selectLocation("Metering")
-			.selectLocation("Cap Control");
+		new YukonTopMenuSolvent().selectALocation("Metering")
+			.selectALocation("Cap Control");
+		selenium.click("link=SubArea-01");
 		yukonLogout();
 	}
 	
