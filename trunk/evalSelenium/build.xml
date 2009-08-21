@@ -42,13 +42,17 @@
 	
 	<target name="jar" depends="compile" 
 			description="Generates final jar">
+		<copy todir="${build.jar}">
+			<fileset dir="lib" excludes="**/*.java"/>
+		</copy>
 		<jar jarfile="${build.jar}/yukonSelenium.jar"
 				basedir="${build.classes}">
 		
-		<manifest>
-			<attribute name="Main-Class" value="com.cooper.selenium.test.TestAuthenticationSelenium"/>
-			<!-- <attribute name="Class-Path" value="junit-4.6.jar"/> -->
-		</manifest>
+			<manifest>
+				<attribute name="Main-Class" value="com.cooper.selenium.test.TestMainSelenium"/>
+				<attribute name="Class-Path" 
+					value=". /c:/build/jar/log4j-1.2.15.jar /c:/build/jar/junit-4.6.jar /c:/build/jar/selenium-java-client-driver.jar /c:/build/jar/dom4j-1.6.1.jar"/>
+			</manifest>
 		</jar>
 	</target>
 	
@@ -56,7 +60,6 @@
 		description="Cleans, Compiles, then builds the JAR file">
 	</target>
 	
-	<!-- This is actually redundent becuase will not have class files beyond junit -->
 	<target name="run" depends="jar">
 		<java jar="${build.jar}/yukonSelenium.jar" fork="true">
 			<classpath>
