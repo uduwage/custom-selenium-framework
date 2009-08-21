@@ -5,12 +5,15 @@ package com.cooper.selenium;
 
 import org.apache.log4j.Logger;
 
-import com.thoughtworks.selenium.CommandProcessor;
 import com.thoughtworks.selenium.DefaultSelenium;
 import com.thoughtworks.selenium.HttpCommandProcessor;
 import com.thoughtworks.selenium.SeleniumException;
 
 /**
+ * SolventSelenium provide access to DefualtSelenium class by extending it.
+ * Two constructors to accept instance of SolventHttpCommandProcessor and Default
+ * command processor.
+ * 
  * @author anuradha.uduwage
  *
  */
@@ -21,6 +24,7 @@ public class SolventSelenium extends DefaultSelenium {
 	
 	private String baseURL = null;
 	/**
+	 * Constructor that accept customized instance of the command processor.
 	 * @param processor
 	 */
 	public SolventSelenium(SolventHttpCommandProcessor processor) {
@@ -33,10 +37,12 @@ public class SolventSelenium extends DefaultSelenium {
 	}
 
 	/**
-	 * @param serverHost
-	 * @param serverPort
-	 * @param browserStartCommand
-	 * @param browserURL
+	 * Constructor that sets server startup values. 
+	 * 
+	 * @param serverHost host name of the server.
+	 * @param serverPort address of the selenium port.
+	 * @param browserStartCommand default browswer command.
+	 * @param browserURL default browser url.
 	 */
 	public SolventSelenium(String serverHost, int serverPort, 
 			String browserStartCommand, String browserURL) {
@@ -101,8 +107,11 @@ public class SolventSelenium extends DefaultSelenium {
 			wait -= 500;
 			present = isElementPresent(locator, 0);
 		}
-		if(!present)
-			throw new SeleniumException("Timeout while waiting for element " + locator + " to appear");
+		if(!present) {
+			String messageString = "Timeout while waiting for element " + locator + " to appear";
+			log.error(messageString);
+			throw new SeleniumException(messageString);
+		}
 	}
 	
 	public void waitForElement(String locator) {
