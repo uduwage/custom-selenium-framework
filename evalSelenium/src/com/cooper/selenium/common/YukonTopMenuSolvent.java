@@ -41,12 +41,26 @@ public class YukonTopMenuSolvent extends AbstractSolvent {
 	
 	/**
 	 * Method to take the user to home location
+	 * @return
 	 */
 	public YukonTopMenuSolvent clickHome() {
 		String home = "//div[@class='stdhdr_rightSide']//a[normalize-space(text())='Home']";
+		selenium.waitForElement(home);
 		if(!selenium.isElementPresent(home)) 
 			throw new SeleniumException("Could not find 'Home' link on the page");
 		selenium.click(home);
+		return this;
+	}
+	/**
+	 * Function to click home link when you are in All Trend Page
+	 * TODO: at somepoint we will combine above method and this.
+	 * @return
+	 */
+	public YukonTopMenuSolvent clickAllTrendsHome() {
+		String allTrendHome = "//a[normalize-space(text())='Home']";
+		if(!selenium.isElementPresent(allTrendHome))
+			throw new SeleniumException("Could not find 'Home' link on All Trends Page");
+		selenium.click(allTrendHome);
 		return this;
 	}
 
