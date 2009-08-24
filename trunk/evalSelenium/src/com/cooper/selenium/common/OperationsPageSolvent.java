@@ -3,9 +3,7 @@
  */
 package com.cooper.selenium.common;
 
-import com.cooper.selenium.AbstractSeleniumDriver;
 import com.cooper.selenium.AbstractSolvent;
-import com.cooper.selenium.SolventSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 
 /**
