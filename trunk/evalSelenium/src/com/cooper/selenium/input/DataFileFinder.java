@@ -40,6 +40,7 @@ public class DataFileFinder {
 		}
 		String resourceName = (packageName + testcase.getClass().getSimpleName()).replace('.', '/');
 		resourceName += ".xml";
+		log.info("Searching for data input file " + resourceName);
 		return resourceName;
 	}
 }
