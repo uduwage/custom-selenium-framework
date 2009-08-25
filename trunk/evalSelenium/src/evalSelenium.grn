@@ -89,20 +89,6 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
-      <sourceType="=evalSelenium/src<com.cooper.selenium.test{TestAuthenticationSelenium.java[TestAuthenticationSelenium"/>
-      <targetType="=evalSelenium/src<com.cooper.selenium.common{OperationsPageSolvent.java[OperationsPageSolvent"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
-      <sourceType="=evalSelenium/src<com.cooper.selenium{SolventHttpCommandProcessor.java[SolventHttpCommandProcessor"/>
-      <targetType="=evalSelenium/lib\/selenium-java-client-driver.jar<com.thoughtworks.selenium(HttpCommandProcessor.class[HttpCommandProcessor"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
       <sourceType="=evalSelenium/src<com.cooper.selenium.test{TestAuthenticationSelenium.java[TestAuthenticationSelenium"/>
       <targetType="=evalSelenium/src<com.cooper.selenium.common{YukonTopMenuSolvent.java[YukonTopMenuSolvent"/>
@@ -114,9 +100,9 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
-      <sourceType="=evalSelenium/src<com.cooper.selenium.common{YukonTopMenuSolvent.java[YukonTopMenuSolvent"/>
-      <targetType="=evalSelenium/src<com.cooper.selenium{AbstractSolvent.java[AbstractSolvent"/>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=evalSelenium/src<com.cooper.selenium{SolventSeleniumTestCase.java[SolventSeleniumTestCase"/>
+      <targetType="=evalSelenium/src<com.cooper.selenium{SolventHttpCommandProcessor.java[SolventHttpCommandProcessor"/>
       <bendpoints>
       </bendpoints>
    </relationship>
@@ -129,8 +115,22 @@
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
+      <sourceType="=evalSelenium/src<com.cooper.selenium{SolventHttpCommandProcessor.java[SolventHttpCommandProcessor"/>
+      <targetType="=evalSelenium/lib\/selenium-java-client-driver.jar<com.thoughtworks.selenium(HttpCommandProcessor.class[HttpCommandProcessor"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
       <sourceType="=evalSelenium/src<com.cooper.selenium{SolventSelenium.java[SolventSelenium"/>
       <targetType="=evalSelenium/lib\/selenium-java-client-driver.jar<com.thoughtworks.selenium(DefaultSelenium.class[DefaultSelenium"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyIPart"/>
+      <sourceType="=evalSelenium/src<com.cooper.selenium.test{TestAuthenticationSelenium.java[TestAuthenticationSelenium"/>
+      <targetType="=evalSelenium/src<com.cooper.selenium.common{OperationsPageSolvent.java[OperationsPageSolvent"/>
       <bendpoints>
       </bendpoints>
    </relationship>
@@ -142,9 +142,9 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=evalSelenium/src<com.cooper.selenium{SolventSeleniumTestCase.java[SolventSeleniumTestCase"/>
-      <targetType="=evalSelenium/src<com.cooper.selenium{SolventHttpCommandProcessor.java[SolventHttpCommandProcessor"/>
+      <class="edu.buffalo.cse.green.relationship.generalization.GeneralizationPart"/>
+      <sourceType="=evalSelenium/src<com.cooper.selenium.common{YukonTopMenuSolvent.java[YukonTopMenuSolvent"/>
+      <targetType="=evalSelenium/src<com.cooper.selenium{AbstractSolvent.java[AbstractSolvent"/>
       <bendpoints>
       </bendpoints>
    </relationship>
