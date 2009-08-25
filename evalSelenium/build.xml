@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- build.xml - build Cannon Selenium module. -->
+<!-- build.xml - build the selenium framework and test classes -->
 <project name="evalSelenium" default="compile" basedir=".">
 	
 	<!-- The directory containing source code -->
 	<property name="src.dir" value="src"/>
 	
 	<!-- Temporary build directories -->
-	<property name="build.dir" value="/build"/>
+	<property name="build.dir" value="/YukonSelenium"/>
 	<property name="build.classes" value="${build.dir}/classes"/>
 	<property name="build.jar" value="${build.dir}/jar"/>
 	
@@ -51,7 +51,7 @@
 			<manifest>
 				<attribute name="Main-Class" value="com.cooper.selenium.test.TestMainSelenium"/>
 				<attribute name="Class-Path" 
-					value=". /c:/build/jar/log4j-1.2.15.jar /c:/build/jar/junit-4.6.jar /c:/build/jar/selenium-java-client-driver.jar /c:/build/jar/dom4j-1.6.1.jar"/>
+					value=". /c:/YukonSelenium/jar/log4j-1.2.15.jar /c:/YukonSelenium/jar/junit-4.6.jar /c:/YukonSelenium/jar/selenium-java-client-driver.jar /c:/YukonSelenium/jar/dom4j-1.6.1.jar"/>
 			</manifest>
 		</jar>
 	</target>
