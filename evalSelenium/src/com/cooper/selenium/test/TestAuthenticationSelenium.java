@@ -65,10 +65,10 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 			}
 		}
 	}
-	/**
-	public static void main(String[] args) {
-		org.junit.runner.JUnitCore.main("com.cooper.selenium.test.TestAuthenticationSelenium");
+	
+	@Test
+	public void testOtherTests() {
+		TestOperationsNavSelenium operSel = new TestOperationsNavSelenium();
+		operSel.testNavigate();
 	}
-	*/
-
 }
