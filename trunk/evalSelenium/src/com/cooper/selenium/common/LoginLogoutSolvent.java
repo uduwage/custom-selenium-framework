@@ -10,9 +10,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.cooper.selenium.AbstractSeleniumDriver;
 import com.cooper.selenium.AbstractSolvent;
-import com.cooper.selenium.SolventSelenium;
 import com.cooper.selenium.input.CSVDataFileDigester;
 
 /**
