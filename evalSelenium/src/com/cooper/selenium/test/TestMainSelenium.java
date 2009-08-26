@@ -8,7 +8,8 @@ import java.io.FileNotFoundException;
 import com.cooper.selenium.SolventSeleniumTestCase;
 
 /**
- * This class shouldn't be here, attempt to test the jar
+ * This class shouldn't be here, framework was build to run in ant level, 
+ * need a main method for the manifest.
  * @author anuradha.uduwage
  *
  */
@@ -20,11 +21,6 @@ public class TestMainSelenium extends SolventSeleniumTestCase {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-		
 		org.junit.runner.JUnitCore.main("com.cooper.selenium.test.TestAuthenticationSelenium");
-		org.junit.runner.JUnitCore.main("com.cooper.selenium.test.TestInputParsingSelenium");
-		org.junit.runner.JUnitCore.main("com.cooper.selenium.test.TestJSCATableSolventSelenium");
-
 	}
-
 }
