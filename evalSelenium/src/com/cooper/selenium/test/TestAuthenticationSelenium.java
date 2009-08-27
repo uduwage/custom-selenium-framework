@@ -60,12 +60,18 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 				generalSolvent.clickStarsLeftMenuLink("Control History");
 				generalSolvent.clickStarsLeftMenuLink("Enrollment");
 				generalSolvent.clickStarsLeftMenuLink("Opt Out");
-				loginLogoutSolvent.yukonLogout();
+				loginLogoutSolvent.yukonLogout().end();
 				
 			}
 		}
 	}
 	
+	@Test
+	public void testNegativeLogin() {
+		init();
+		LoginLogoutSolvent loginLogoutSolvent = new LoginLogoutSolvent();
+		loginLogoutSolvent.cannonLogin(getParamString("invaliduser"), getParamString("password")).end();
+	}
 	@Test
 	public void testOtherTests() {
 		TestOperationsNavSelenium operSel = new TestOperationsNavSelenium();

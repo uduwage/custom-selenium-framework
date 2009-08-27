@@ -15,7 +15,6 @@ import com.cooper.selenium.input.DataFileFinder;
 import com.cooper.selenium.input.InvalidDataException;
 import com.cooper.selenium.input.MissingDataFileException;
 import com.cooper.selenium.input.XMLDataFileDigester;
-import com.thoughtworks.selenium.HttpCommandProcessor;
 
 /**
  * All the junit test should extend this abstract class to get an handle to the selenium
