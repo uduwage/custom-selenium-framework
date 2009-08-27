@@ -18,7 +18,16 @@ public abstract class AbstractSolvent {
 	private static final Logger log = Logger.getLogger(AbstractSolvent.class.getName());
 	
 	private final HashMap<String, String> values = new HashMap<String, String>();
+	
+	/**
+	 * we introduce this instance for convenience so we dont have to use getSeleniumDriver() all the time.
+	 */
 	protected SolventSelenium selenium = null;
+	
+	protected AbstractSolvent() {
+		//so the selenium instance will be in sync with ThreadLocal session at all times.
+		selenium = getSeleniumDriver();
+	}
 	
 	public AbstractSolvent(String...params) {
 		for (String param:params) {
