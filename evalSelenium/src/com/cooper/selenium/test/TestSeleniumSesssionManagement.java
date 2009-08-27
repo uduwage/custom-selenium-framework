@@ -5,13 +5,10 @@ package com.cooper.selenium.test;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import com.cooper.selenium.SeleniumSession;
 import com.cooper.selenium.SolventSeleniumTestCase;
-import com.cooper.selenium.common.OperationsPageSolvent;
-import com.cooper.selenium.common.PopupMenuSolvent;
-import com.cooper.selenium.common.YukonTableSolvent;
+import com.cooper.selenium.common.LoginLogoutSolvent;
 import com.thoughtworks.selenium.SeleniumException;
 
 /**
@@ -25,15 +22,7 @@ public class TestSeleniumSesssionManagement extends SolventSeleniumTestCase {
 	@Test
 	public void testSessionCaching() {
 
-		start(getAuthenticatedSeleniumSession());
-		/*
-		this.start(this.getAuthenticatedSeleniumSession(),
-				new OperationsPageSolvent()).clickLinkItem("Cap Control")
-				.navigateTo(new YukonTableSolvent());
-		/*
-		PopupMenuSolvent popupMenuSolvent = new PopupMenuSolvent();
-		popupMenuSolvent.selectNewLocation("Metering");
-		*/
+		start(getAuthenticatedSeleniumSession(), new LoginLogoutSolvent()).cannonLogin("yukon", "yukon");
 
 		// Store this session
 		SeleniumSession.store("Session1");
