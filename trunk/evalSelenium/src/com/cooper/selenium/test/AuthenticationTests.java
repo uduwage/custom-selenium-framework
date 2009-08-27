@@ -3,20 +3,11 @@
  */
 package com.cooper.selenium.test;
 
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.TimeoutException;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import com.cooper.selenium.AbstractSeleniumDriver;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
-import com.cooper.selenium.input.CSVDataFileDigester;
-import com.cooper.selenium.stars.ContactInfoPageSolvent;
 
 /**
  * 

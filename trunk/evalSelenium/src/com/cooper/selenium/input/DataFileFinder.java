@@ -7,7 +7,6 @@ import java.io.InputStream;
 
 import org.apache.log4j.Logger;
 
-import com.cooper.selenium.SeleniumSession;
 import com.cooper.selenium.SolventSeleniumTestCase;
 
 /**
