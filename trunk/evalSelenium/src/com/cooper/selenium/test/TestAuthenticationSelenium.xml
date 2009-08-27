@@ -23,5 +23,9 @@
         <value>41000001</value>
         <value>41000002</value>
     </Parameter>
+    
+    <Parameter name="invaliduser">
+    	<value>yukonn</value>
+    </Parameter>
 
 </testConfig>
