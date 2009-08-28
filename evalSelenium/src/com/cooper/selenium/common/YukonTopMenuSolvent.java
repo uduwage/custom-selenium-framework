@@ -62,5 +62,18 @@ public class YukonTopMenuSolvent extends AbstractSolvent {
 		selenium.click(allTrendHome);
 		return this;
 	}
+	
+	/**
+	 * This method should provide access to all the breadcrumb links at the top menu.
+	 * @param bcrumbName name of the breadcrumb link.
+	 * @return
+	 */
+	public YukonTopMenuSolvent clickBreadcrumb(String bcrumbName) {
+		String linklocator = "//a[normalize-space(text())='" + bcrumbName + "']";
+		if(!selenium.isElementPresent(linklocator))
+			throw new SeleniumException("Could not find " + bcrumbName + "breadcrumb link.");
+		selenium.click(linklocator);
+		return this;
+	}
 
 }
