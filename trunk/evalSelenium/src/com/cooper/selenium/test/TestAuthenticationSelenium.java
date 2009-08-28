@@ -5,9 +5,12 @@ package com.cooper.selenium.test;
 
 import java.io.FileNotFoundException;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import com.cooper.selenium.SolventSeleniumTestCase;
+import com.cooper.selenium.common.CommonSolvent;
 import com.cooper.selenium.common.LoginLogoutSolvent;
 import com.cooper.selenium.common.OperationsPageSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
@@ -32,12 +35,15 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 			.navigateTo(new YukonTopMenuSolvent()).clickHome();
 		
 		YukonTopMenuSolvent menuSolvent = new YukonTopMenuSolvent();
-		menuSolvent.selectALocation("Bulk Importer");
+		menuSolvent.selectALocation("Bulk Importer").clickBreadcrumb("Operations Home");
 		menuSolvent.clickHome();
 		menuSolvent.selectALocation("Reporting");
 		menuSolvent.clickHome();
 		menuSolvent.selectALocation("Metering");
 		menuSolvent.clickHome();
+		menuSolvent.selectALocation("Bulk Operations");
+		CommonSolvent commonSolvent = new CommonSolvent();
+		Assert.assertEquals("Bulk Oper", commonSolvent.getYukonText("Bulk Operations"));
 		
 		operationPage.yukonLogout();
 	}
