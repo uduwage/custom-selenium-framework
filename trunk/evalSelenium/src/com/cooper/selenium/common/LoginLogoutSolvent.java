@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.cooper.selenium.AbstractSolvent;
+import com.cooper.selenium.SolventSeleniumException;
 import com.cooper.selenium.input.CSVDataFileDigester;
 
 /**
@@ -44,9 +45,17 @@ public class LoginLogoutSolvent extends AbstractSolvent {
 		String userLocator = "//table[@class='loginTable']//input[@id='USERNAME']";
 		String passLocator = "//table[@class='loginTable']//input[@name='PASSWORD']";
 		String submit = "//table[@class='loginTable']//input[@name='login']";
-		selenium.type(userLocator, userName);
-		selenium.type(passLocator, password);
-		selenium.click(submit);
+		selenium.waitForElement(userLocator);
+		if(selenium.isElementPresent(userLocator))
+			selenium.type(userLocator, userName);
+		selenium.waitForElement(passLocator);
+		if(selenium.isElementPresent(passLocator))
+			selenium.type(passLocator, password);
+		selenium.waitForElement(submit);
+		if(selenium.isElementPresent(submit))
+			selenium.click(submit);
+		else
+			throw new SolventSeleniumException("Element not found ");
 		return this;	
 	}	
 
