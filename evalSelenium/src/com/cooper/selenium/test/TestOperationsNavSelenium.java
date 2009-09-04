@@ -8,6 +8,7 @@ import org.junit.Test;
 import com.cooper.selenium.SolventSeleniumTestCase;
 import com.cooper.selenium.common.LoginLogoutSolvent;
 import com.cooper.selenium.common.OperationsPageSolvent;
+import com.cooper.selenium.common.WidgetSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
 
 /**
@@ -30,7 +31,9 @@ public class TestOperationsNavSelenium extends SolventSeleniumTestCase {
 		operationsPageSolvent.clickLinkItem("All Trends").navigateTo(new YukonTopMenuSolvent()).clickAllTrendsHome();
 		operationsPageSolvent.clickLinkItem("Bulk Importer");
 		operationsPageSolvent.navigateTo(new YukonTopMenuSolvent()).clickHome();
-		operationsPageSolvent.clickLinkItem("Metering").navigateTo(new YukonTopMenuSolvent().clickHome());
+		operationsPageSolvent.clickLinkItem("Metering")
+			.navigateTo(new WidgetSolvent()).expandCollapseWidgetByTitle("Meter Search")
+			.navigateTo(new YukonTopMenuSolvent().clickHome());
 		
 		//showing the versatility
 		YukonTopMenuSolvent menuSolvent = new YukonTopMenuSolvent();

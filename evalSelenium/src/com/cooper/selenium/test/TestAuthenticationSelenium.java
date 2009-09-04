@@ -15,6 +15,7 @@ import com.cooper.selenium.common.LoginLogoutSolvent;
 import com.cooper.selenium.common.OperationsPageSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
 import com.cooper.selenium.stars.StarsGeneralSolvent;
+import com.thoughtworks.selenium.SeleniumException;
 
 /**
  * This is to test the thread local implementation.
@@ -42,8 +43,10 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 		menuSolvent.selectALocation("Metering");
 		menuSolvent.clickHome();
 		menuSolvent.selectALocation("Bulk Operations");
+		
+		//test if we are Bulk Operations page
 		CommonSolvent commonSolvent = new CommonSolvent();
-		Assert.assertEquals("Bulk Oper", commonSolvent.getYukonText("Bulk Operations"));
+		Assert.assertEquals("Bulk Operations", commonSolvent.getYukonText("Bulk Operations"));
 		
 		operationPage.yukonLogout();
 	}
@@ -58,15 +61,19 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 		String[] passwords = getParamStrings("passwords");
 		for(int i=0; i < users.length; i++) {
 			if((passwords.length != 0) && (passwords.length == users.length)) {
-				loginLogoutSolvent.cannonLogin(users[i], passwords[i]);
-				generalSolvent.clickGeneral();
-				generalSolvent.clickStarsLeftMenuLink("Contacts");
-				generalSolvent.clickStarsLeftMenuLink(users[i]);
-				generalSolvent.clickStarsLeftMenuLink("Schedule");
-				generalSolvent.clickStarsLeftMenuLink("Control History");
-				generalSolvent.clickStarsLeftMenuLink("Enrollment");
-				generalSolvent.clickStarsLeftMenuLink("Opt Out");
-				loginLogoutSolvent.yukonLogout().end();
+				if(users[i] != null) {
+					loginLogoutSolvent.cannonLogin(users[i], passwords[i]);
+					generalSolvent.clickGeneral();
+					generalSolvent.clickStarsLeftMenuLink("Contacts");
+					generalSolvent.clickStarsLeftMenuLink(users[i]);
+					generalSolvent.clickStarsLeftMenuLink("Schedule");
+					generalSolvent.clickStarsLeftMenuLink("Control History");
+					generalSolvent.clickStarsLeftMenuLink("Enrollment");
+					generalSolvent.clickStarsLeftMenuLink("Opt Out");
+					loginLogoutSolvent.yukonLogout();
+				}
+				else 
+					throw new SeleniumException("Something worng with the users");
 				
 			}
 		}
@@ -83,4 +90,5 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 		TestOperationsNavSelenium operSel = new TestOperationsNavSelenium();
 		operSel.testNavigate();
 	}
+	
 }
