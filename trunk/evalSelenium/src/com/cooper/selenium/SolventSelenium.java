@@ -231,4 +231,15 @@ public class SolventSelenium extends DefaultSelenium {
 			log.error(ex);
 		}
 	}
+	
+	/**
+	 * wait for the given popup to load and open and switch the 
+	 * focus to the popup window.
+	 * @param windowName name of the window, can be found from firebug.
+	 */
+	public void waitForPopup(String windowName) {
+		super.waitForPopUp(windowName, SeleniumDefaultProperties.getResourceAsStream("default.pageload.timeout"));
+		super.selectWindow(windowName);
+	}
+	
 }
