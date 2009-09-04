@@ -38,6 +38,7 @@ public class YukonTableSolvent extends AbstractSolvent {
 	
 	public String tableFromTitle(String title) {
 		String tId = this.getTableIDForTitle(title);
+		System.out.println("tableId " + tId);
 		return tId;
 	}
 	
@@ -48,7 +49,7 @@ public class YukonTableSolvent extends AbstractSolvent {
 		String id = SeleniumSession.get().getEval(js);
 		return id;
 	}
-	//TODO: if all the tables had class this method could have been a static 
+	//TODO: if all the tables had same class this method could have been a static 
 	//figureout to get the xpath buy the title name of the table.
 	private String getTitleBasedXPathRoot(String title) {
 		return "//table[contains(@id, '"+ 
