@@ -44,7 +44,7 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 		menuSolvent.clickHome();
 		menuSolvent.selectALocation("Bulk Operations");
 		
-		//test if we are Bulk Operations page
+		//test if we are in Bulk Operations page
 		CommonSolvent commonSolvent = new CommonSolvent();
 		Assert.assertEquals("Bulk Operations", commonSolvent.getYukonText("Bulk Operations"));
 		
