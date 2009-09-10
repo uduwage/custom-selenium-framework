@@ -40,7 +40,7 @@ public class CommonSolvent extends AbstractSolvent {
 	 */
 	public String getYukonText(String text) {
 		String txtLocator = "//*[contains(text(), '" + text + "')]";
-		selenium.waitForElement(txtLocator);
+		selenium.waitForElementToBecomeVisible(txtLocator, 2000);
 		if(!selenium.isElementPresent(txtLocator))
 			throw new SolventSeleniumException("Unable to find " + text + "how about double check and try!");
 		String foundText = selenium.getText(txtLocator);
