@@ -8,6 +8,9 @@ import com.cooper.selenium.SeleniumSession;
 
 
 /**
+ * Solvent that handles all tables in yukon application.<br>
+ * Any table that has a tableId defined can use this class.
+ * <br><br>
  * @author anuradha.uduwage
  *
  */
@@ -57,7 +60,7 @@ public class YukonTableSolvent extends AbstractSolvent {
 				title +")]/ancestor::div[@class='content roundedContainer_content']";
 	}
 	/**
-	 * Retur the tableId
+	 * Return the tableId
 	 * @return
 	 */
 	public String getTableId() {
@@ -65,7 +68,7 @@ public class YukonTableSolvent extends AbstractSolvent {
 	}
 	
 	/**
-	 * Method return the xpath root for an elemen.
+	 * Method return the xpath root for an element.
 	 * @return xpathRoot xpath for the root element.
 	 */
 	public String getXpathRoot() {

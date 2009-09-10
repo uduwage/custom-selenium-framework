@@ -6,10 +6,12 @@ package com.cooper.selenium.test;
 import org.junit.Test;
 
 import com.cooper.selenium.SolventSeleniumTestCase;
+import com.cooper.selenium.common.CommonSolvent;
 import com.cooper.selenium.common.LoginLogoutSolvent;
 import com.cooper.selenium.common.OperationsPageSolvent;
 import com.cooper.selenium.common.WidgetSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
+import com.cooper.selenium.meetering.MeteringSolvent;
 
 /**
  * Test to check the navigation options in /Operations.jsp page
@@ -33,6 +35,11 @@ public class TestOperationsNavSelenium extends SolventSeleniumTestCase {
 		operationsPageSolvent.navigateTo(new YukonTopMenuSolvent()).clickHome();
 		operationsPageSolvent.clickLinkItem("Metering")
 			.navigateTo(new WidgetSolvent()).expandCollapseWidgetByTitle("Meter Search")
+											.expandCollapseWidgetByTitle("Meter Search")
+			.navigateTo(new CommonSolvent()).enterText("Quick Search:", "Typing is working")
+											.enterText("Meter Number:", "Typing in meter number")
+											.enterText("Device Type:", "Typing device type")
+			.navigateTo(new MeteringSolvent()).clickMeterSearch()
 			.navigateTo(new YukonTopMenuSolvent().clickHome());
 		
 		//showing the versatility
