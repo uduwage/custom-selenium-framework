@@ -62,5 +62,11 @@ public class WidgetSolvent extends AbstractSolvent {
 		
 		return plusMinusXpath;
 	}
+	
+	public String getWidgetTitle() {
+		String title = selenium.getAttribute("//div[@class='title boxContainer_title']");
+		return title;
+	}
+	
 
 }
