@@ -3,6 +3,8 @@
  */
 package com.cooper.selenium.test;
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import com.cooper.selenium.SolventSeleniumTestCase;
@@ -39,8 +41,10 @@ public class TestOperationsNavSelenium extends SolventSeleniumTestCase {
 			.navigateTo(new CommonSolvent()).enterText("Quick Search:", "Typing is working")
 											.enterText("Meter Number:", "Typing in meter number")
 											.enterText("Device Type:", "Typing device type")
-			.navigateTo(new MeteringSolvent()).clickMeterSearch()
-			.navigateTo(new YukonTopMenuSolvent().clickHome());
+			.navigateTo(new MeteringSolvent()).clickMeterSearch();
+		Assert.assertEquals("Edit Filters", 
+				new CommonSolvent().getYukonText("Edit Filters"));
+			operationsPageSolvent.navigateTo(new YukonTopMenuSolvent().clickHome());
 		
 		//showing the versatility
 		YukonTopMenuSolvent menuSolvent = new YukonTopMenuSolvent();
