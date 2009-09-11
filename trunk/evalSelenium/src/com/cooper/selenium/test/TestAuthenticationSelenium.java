@@ -80,6 +80,29 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 	}
 	
 	@Test
+	public void testUserAccesstoSetupPage() {
+		init();
+		LoginLogoutSolvent loginLogoutSolvent = new LoginLogoutSolvent();
+		String[] users = getParamStrings("users");
+		String[] passwords = getParamStrings("passwords");
+		CommonSolvent commonSolvent = new CommonSolvent();
+		for(int i=0; i < users.length; i++) {
+			if((passwords.length != 0) && (passwords.length == users.length)) {
+				if(users[i] != null) {
+					loginLogoutSolvent.cannonLogin(users[i], passwords[i]);
+					commonSolvent.openURL("http://pspl-qa008:8080/setup.jsp");
+					commonSolvent.getYukonText("HTTP Status 500 -");
+					commonSolvent.openURL("http://pspl-qa008:8080/");
+					loginLogoutSolvent.yukonLogout();
+				}
+				else 
+					throw new SeleniumException("Something worng with the users");
+				
+			}
+		}		
+	}
+	
+	@Test
 	public void testNegativeLogin() {
 		init();
 		LoginLogoutSolvent loginLogoutSolvent = new LoginLogoutSolvent();
