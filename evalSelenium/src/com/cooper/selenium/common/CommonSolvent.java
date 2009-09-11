@@ -75,4 +75,17 @@ public class CommonSolvent extends AbstractSolvent {
 		selenium.click(buttonLocator);
 		return this;
 	}
+	
+	/**
+	 * Method to enter url from anywhere of the application. 
+	 * TODO: get home url from the server settings and add function to navigate to home.
+	 * @param url exact web address of the location.
+	 * @return
+	 */
+	public CommonSolvent openURL(String url) {
+		selenium.open(url);
+		selenium.waitForPageToLoad(2000);
+		return this;
+	}
+	
 }

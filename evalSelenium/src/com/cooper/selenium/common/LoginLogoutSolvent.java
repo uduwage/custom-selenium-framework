@@ -13,6 +13,7 @@ import java.util.Map.Entry;
 import com.cooper.selenium.AbstractSolvent;
 import com.cooper.selenium.SolventSeleniumException;
 import com.cooper.selenium.input.CSVDataFileDigester;
+import com.thoughtworks.selenium.SeleniumException;
 
 /**
  * @author anuradha.uduwage
@@ -46,17 +47,17 @@ public class LoginLogoutSolvent extends AbstractSolvent {
 		String passLocator = "//table[@class='loginTable']//input[@name='PASSWORD']";
 		String submit = "//table[@class='loginTable']//input[@name='login']";
 		selenium.waitForElement(userLocator, 10000);
-		if(selenium.isElementPresent(userLocator))
-			selenium.type(userLocator, userName);
-		selenium.waitForElement(passLocator);
-		if(selenium.isElementPresent(passLocator))
-			selenium.type(passLocator, password);
-		selenium.waitForElement(submit);
-		if(selenium.isElementPresent(submit))
-			selenium.click(submit);
-		else if(!selenium.isElementPresent(userLocator) || (!selenium.isElementPresent(passLocator))
-					|| (!selenium.isElementPresent(submit)))
-			throw new SolventSeleniumException("Element not found ");
+		if(!selenium.isElementPresent(userLocator, 2000))
+			throw new SeleniumException("Can not find '" + userLocator + "' input field");
+		selenium.type(userLocator, userName);
+		selenium.waitForElement(passLocator, 2000);
+		if(!selenium.isElementPresent(passLocator, 2000))
+			throw new SeleniumException("Can not find '" + passLocator + "' input field"); 
+		selenium.type(passLocator, password);
+		selenium.waitForElement(submit, 2000);
+		if(!selenium.isElementPresent(submit, 2000))
+			throw new SeleniumException("Can not find '" + submit + "' button to click");
+		selenium.click(submit);
 		return this;	
 	}	
 
@@ -89,8 +90,9 @@ public class LoginLogoutSolvent extends AbstractSolvent {
 	public LoginLogoutSolvent yukonLogout() {
 		String logout = "//a[normalize-space(text())='Logout']";
 		selenium.waitForElement(logout);
-		if(selenium.isElementPresent(logout))
-			selenium.click(logout);
+		if(!selenium.isElementPresent(logout, 2000))
+			throw new SeleniumException("Unable to find '" + logout + "' (logout) to click");
+		selenium.click(logout);
 		return this;
 	}	
 }
