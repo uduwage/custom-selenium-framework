@@ -183,7 +183,7 @@ public abstract class SolventSeleniumTestCase {
 		
 		String testHostURL = SeleniumDefaultProperties.getResourceAsStream("default.auth.url");
 		if(testHostURL.equals(""))
-			testHostURL = "http://pspl-qa008:8080/login.jsp?REDIRECTED_FROM=/";
+			testHostURL = SeleniumDefaultProperties.getClassInstance().getBaseHREF();
 		
 		SolventHttpCommandProcessor commandProcessor = 
 			new SolventHttpCommandProcessor(host, Integer.parseInt(port), browserCommand, testHostURL);
