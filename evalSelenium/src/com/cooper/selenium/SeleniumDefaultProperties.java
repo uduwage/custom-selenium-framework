@@ -22,6 +22,14 @@ public class SeleniumDefaultProperties {
 	private static final Logger log = Logger.getLogger(SeleniumDefaultProperties.class.getName());
 
 	private static final String SELENIUM_PROP_FILE = "seleniumdefault.properties";
+	
+	private static SeleniumDefaultProperties instance = null;
+	
+	public static SeleniumDefaultProperties getClassInstance() {
+		if(instance == null)
+			instance = new SeleniumDefaultProperties();
+		return instance;
+	}
 
 	public static String getResourceAsStream(String defaultProp) {
 		String defaultPropValue = null;
@@ -39,10 +47,24 @@ public class SeleniumDefaultProperties {
 		return defaultPropValue;
 	}
 	
+	/**
+	 * If the code is getting executed on actual server it will user the localhost
+	 * since localhost is open and defaults to yukon application but during developement 
+	 * developer should set the url in seleniumdefault.properties file.
+	 * @return url url string of the host.
+	 */
 	public String getBaseHREF() {
-		return "http://pspl-qa008:8080/";
+		String host = getResourceAsStream("default.server.localhost");
+		String url = "";
+		if(host.equalsIgnoreCase("true"))
+			url = "http://localhost:8080";
+		else 
+			url = getResourceAsStream("default.auth.url");
+		return url;
 	}
+	
 	public static void main (String[] args) {
+		//TODO: should take out this method after debug.
 		log.info(getResourceAsStream("default.browser.command"));
 	}
 }
