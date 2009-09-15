@@ -4,6 +4,8 @@
 package com.cooper.selenium.test;
 
 
+import junit.framework.Assert;
+
 import org.junit.Test;
 
 import com.cooper.selenium.SolventSeleniumTestCase;
@@ -27,8 +29,5 @@ public class TestYukonTableSolventSelenium extends SolventSeleniumTestCase {
 			.navigateTo(new MeteringSolvent()).clickMeterSearch()
 			.navigateTo(new YukonTableSolvent("tableId=deviceTable"))
 			.getTextInCell(2, 1);
-			
-		
 	}
-
 }
