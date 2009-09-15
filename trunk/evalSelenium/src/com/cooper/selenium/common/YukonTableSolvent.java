@@ -31,12 +31,34 @@ public class YukonTableSolvent extends AbstractSolvent {
 	}
 	
 	/**
+	 * Based on the index of the row and index of the cell the method will return 
+	 * the text of the cell.
+	 * 
+	 * @param rowInxed index of the row.
+	 * @param cellIndex index of the cell.
+	 * @return cellText string value of the text in cell.
+	 */
+	public String getTextInCell(int rowInxed, int cellIndex) {
+		String cellLocator = this.getTableRowXPathRoot(rowInxed) + "//td[" + cellIndex +"]";
+		String cellText = selenium.getText(cellLocator);
+		return cellText;
+	}
+	/**
 	 * Returns the locator for a table element in the current page.
 	 * @param tableId The table id to search for
 	 * @return The XPath locator string for a given table id.
 	 */
 	public static String getTableLocator(String tableId) {
 		return "//*[@id='" + tableId + "']";
+	}
+	
+	/**
+	 * Gets the xpath expression for the row with the given index.
+	 * @param rowNum integer value of the row.
+	 * @return an xpath expression for the row with the index.
+	 */
+	protected String getTableRowXPathRoot(int rowNum) {
+		return getXpathRoot() + "//tr[" + rowNum + "]"; 
 	}
 	
 	public String tableFromTitle(String title) {
