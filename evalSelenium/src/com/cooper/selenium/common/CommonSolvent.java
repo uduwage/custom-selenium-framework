@@ -84,7 +84,23 @@ public class CommonSolvent extends AbstractSolvent {
 	 */
 	public CommonSolvent openURL(String url) {
 		selenium.open(url);
-		selenium.waitForPageToLoad(2000);
+		selenium.waitForPageToLoad(9000);
+		return this;
+	}
+	
+	/**
+	 * Yukon application is so inconsistent so if there is an area that we can't use the 
+	 * {@link #enterText(String, String)} use this method in such localized area to customize.
+	 * @param id id value of the input
+	 * @param text value
+	 * @return
+	 */
+	public CommonSolvent inputTextById(String id, String text) {
+		String locator = "//input[@id='"+ id +"']";
+		selenium.waitForElement(locator);
+		if(!selenium.isElementPresent(locator))
+			throw new SeleniumException("Can not find input with id='" + id + "' to enter text");
+		selenium.type(locator, text);
 		return this;
 	}
 	
