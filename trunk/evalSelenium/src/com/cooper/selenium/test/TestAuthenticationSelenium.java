@@ -6,8 +6,10 @@ package com.cooper.selenium.test;
 import java.io.FileNotFoundException;
 
 import junit.framework.Assert;
+import junit.textui.TestRunner;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.cooper.selenium.SolventSeleniumTestCase;
 import com.cooper.selenium.common.CommonSolvent;
@@ -22,6 +24,7 @@ import com.thoughtworks.selenium.SeleniumException;
  * @author anuradha.uduwage
  *
  */
+
 public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 	
 	private void init() {
@@ -91,12 +94,12 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 				if(users[i] != null) {
 					loginLogoutSolvent.cannonLogin(users[i], passwords[i]);
 					commonSolvent.openURL("http://pspl-qa008:8080/setup.jsp");
-					commonSolvent.getYukonText("HTTP Status 500 -");
+					commonSolvent.getYukonText("HTTP Status");
 					commonSolvent.openURL("http://pspl-qa008:8080/");
 					loginLogoutSolvent.yukonLogout();
 				}
 				else 
-					throw new SeleniumException("Something worng with the users");
+					throw new SeleniumException("Users Didn't get Extracted properly from XML");
 				
 			}
 		}		
