@@ -3,7 +3,9 @@
  */
 package com.cooper.selenium.meetering;
 
+import com.cooper.selenium.common.CommonSolvent;
 import com.cooper.selenium.common.WidgetSolvent;
+import com.cooper.selenium.common.YukonTableSolvent;
 import com.thoughtworks.selenium.SeleniumException;
 
 /**
@@ -28,7 +30,7 @@ public class MeteringSolvent extends WidgetSolvent {
 	}
 	
 	/**
-	 * TODO: This is not good but due to crapy dom structure we can't do much for now.
+	 * TODO: This is not good but due to crazy dom structure we can't do much for now.
 	 * TODO: Should implement a method in super class to get widget by its header.
 	 * @return
 	 */
@@ -42,5 +44,22 @@ public class MeteringSolvent extends WidgetSolvent {
 		selenium.waitForElementToBecomeVisible(elementInForm, 2000);
 		return this;
 	}
+	
+	/**
+	 * This method specifically for filter criteria on the meter search page.
+	 * @param filter name of the text box of filter criteria
+	 * @param text input text.
+	 * @return YukonTableSolvent 
+	 */
+	public YukonTableSolvent enterMeterFilterCriteria(String filter, String text) {
+		String inputLocator = "//div[contains(text(), '"+ filter + "')]/following::input[1]";
+		selenium.waitForElement(inputLocator, 2000);
+		if(!selenium.isElementPresent(inputLocator))
+			throw new SeleniumException("Can not find input text box for '" + filter +"' to type '" + text + "'.");
+		selenium.type(inputLocator, text);
+		return new YukonTableSolvent();
+	}
+	
+	
 		
 }
