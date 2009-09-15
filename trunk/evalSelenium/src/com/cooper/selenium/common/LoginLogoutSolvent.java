@@ -58,6 +58,7 @@ public class LoginLogoutSolvent extends AbstractSolvent {
 		if(!selenium.isElementPresent(submit, 2000))
 			throw new SeleniumException("Can not find '" + submit + "' button to click");
 		selenium.click(submit);
+		selenium.waitForPageToLoad(2000);
 		return this;	
 	}	
 
