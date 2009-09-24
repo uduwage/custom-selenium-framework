@@ -42,7 +42,7 @@ public class StarsGeneralSolvent extends AbstractSolvent {
 	 * @return return an instance of the AbstractSeleniumDriver.
 	 */
 	public StarsGeneralSolvent clickStarsLeftMenuLink(String linkName) {
-		String linkLocator = "//div[@class='menuOption2']//a[text() = '" + linkName + "']";
+		String linkLocator = "//div[@class='menuOption2']//a[normalize-space(text()) = '" + linkName + "']";
 		selenium.waitForElement(linkLocator, 10000);
 		if(!selenium.isElementPresent(linkLocator, 10000))
 			throw new SeleniumException("Could not find link " + linkLocator + " to click.");
