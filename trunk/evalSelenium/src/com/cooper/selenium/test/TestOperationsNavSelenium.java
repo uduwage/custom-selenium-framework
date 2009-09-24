@@ -65,6 +65,7 @@ public class TestOperationsNavSelenium extends SolventSeleniumTestCase {
 		operationsPageSolvent.clickLinkItem("Device Configuration");
 		//logout
 		loginLogoutSolvent.yukonLogout();
+		loginLogoutSolvent.end();
 		//kill everything so no leftover hanging sessions.
 		tearDown();
 		
