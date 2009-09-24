@@ -29,6 +29,11 @@ public class OperationsPageSolvent extends AbstractSolvent {
 		getSeleniumDriver().waitForPageToLoad();
 	}
 	
+	/**
+	 * Click any link on the page by its name. 
+	 * @param linkName name of the link
+	 * @return
+	 */
 	public OperationsPageSolvent clickLinkItem(String linkName) {
 		String linkLocator = "//a[normalize-space(text())='" + linkName + "']";
 		selenium.waitForElement(linkLocator);
