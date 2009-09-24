@@ -4,7 +4,9 @@
 package com.cooper.selenium.common;
 
 import com.cooper.selenium.AbstractSolvent;
+import com.cooper.selenium.SeleniumDefaultProperties;
 import com.cooper.selenium.SeleniumSession;
+import com.cooper.selenium.SolventSeleniumException;
 
 
 /**
@@ -31,6 +33,26 @@ public class YukonTableSolvent extends AbstractSolvent {
 	}
 	
 	/**
+	 * Given the row number method will simulate mouse over action on any row.
+	 * @param rowNum integer value of the row.
+	 * @return
+	 */
+	public YukonTableSolvent mouseOver(int rowNum) {
+		selenium.mouseOver(getTableRowXPathRoot(rowNum));
+		return this;
+	}
+	
+	/**
+	 * Click the row by given row index.
+	 * @param rowIndex Index of the row.
+	 * @return
+	 */
+	public YukonTableSolvent clickRowByIndex(int rowIndex) {
+		String rowLocator = this.getTableRowXPathRoot(rowIndex);
+		selenium.click(rowLocator);
+		return this;
+	}
+	/**
 	 * Based on the index of the row and index of the cell the method will return 
 	 * the text of the cell.
 	 * 
@@ -40,6 +62,9 @@ public class YukonTableSolvent extends AbstractSolvent {
 	 */
 	public String getTextInCell(int rowInxed, int cellIndex) {
 		String cellLocator = this.getTableRowXPathRoot(rowInxed) + "//td[" + cellIndex +"]";
+		selenium.waitForElement(cellLocator, 
+				Integer.parseInt(SeleniumDefaultProperties.getResourceAsStream("default.yukon.table.reload.timeout")));
+		this.waitForJSObject(2000);
 		String cellText = selenium.getText(cellLocator);
 		return cellText;
 	}
@@ -61,26 +86,38 @@ public class YukonTableSolvent extends AbstractSolvent {
 		return getXpathRoot() + "//tr[" + rowNum + "]"; 
 	}
 	
-	public String tableFromTitle(String title) {
-		String tId = this.getTableIDForTitle(title);
-		System.out.println("tableId " + tId);
-		return tId;
+	/**
+	 * Convenient method to get the default timeout for table to load.
+	 * @see YukonTableSolvent#waitForJSObject(int) 
+	 */
+	protected void waitForJSObject() {
+		waitForJSObject(Integer.parseInt
+				(SeleniumDefaultProperties.getResourceAsStream("default.yukon.table.reload.timeout")));
 	}
 	
-	private String getTableIDForTitle(String title) {
-		String js = "eval_xpath(\""
-			+ this.getTitleBasedXPathRoot(title)
-			+ "\", selenium.browserbot.getCurrentWindow().document[0].getAttribute('id');";
-		String id = SeleniumSession.get().getEval(js);
-		return id;
+	/**
+	 * Method waits for the JavaScript object tableId to appear in windows.deviceTables array.
+	 * @param timeout time to wait in milliseconds.
+	 */
+	protected void waitForJSObject(int timeout) {
+		int time = 0;
+		while(time < timeout && !isJSObjectAvailable()) {
+			time += 500;
+		}
+		if(time > timeout) {
+			throw new SolventSeleniumException("Time out while looking for tableID " + this.tableId);
+		}
 	}
-	//TODO: if all the tables had same class this method could have been a static 
-	//figureout to get the xpath buy the title name of the table.
-	private String getTitleBasedXPathRoot(String title) {
-		return "//table[contains(@id, '"+ 
-				this.tableId +"')]//div[contains(.,"+ 
-				title +")]/ancestor::div[@class='content roundedContainer_content']";
+	
+	/**
+	 * Method confirms if the JavaScript object for this table is present, if not return false.
+	 * @return True if the JSObject is present, return false otherwise.
+	 */
+	protected boolean isJSObjectAvailable() {
+		return new Boolean(selenium.getEval
+				("(window.deviceTables && (window.deviceTables['" + this.tableId + "'] != 'undefined'))"));
 	}
+
 	/**
 	 * Return the tableId
 	 * @return
