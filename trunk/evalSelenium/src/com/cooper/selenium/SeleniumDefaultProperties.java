@@ -33,7 +33,7 @@ public class SeleniumDefaultProperties {
 
 	public static String getResourceAsStream(String defaultProp) {
 		String defaultPropValue = null;
-		String keys = null;
+		//String keys = null;
 		try {
 			InputStream inputStream = SeleniumDefaultProperties.class.getClassLoader().getResourceAsStream(SELENIUM_PROP_FILE);
 			Properties properties = new Properties();
@@ -57,7 +57,7 @@ public class SeleniumDefaultProperties {
 		String host = getResourceAsStream("default.server.localhost");
 		String url = "";
 		if(host.equalsIgnoreCase("true"))
-			url = "http://localhost:8080";
+			url = "http://localhost:8080/";
 		else 
 			url = getResourceAsStream("default.auth.url");
 		return url;

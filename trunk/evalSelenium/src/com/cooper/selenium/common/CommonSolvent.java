@@ -32,6 +32,27 @@ public class CommonSolvent extends AbstractSolvent {
 	}
 	
 	/**
+	 * This method will return the title of the page if html title tag
+	 * is used. 
+	 * @return page title.
+	 */
+	public String getPageTitle() {
+		return selenium.getTitle();
+	}
+	
+	/**
+	 * Helper method to simplify JUnit assertion test. 
+	 * @param expected Exact string value of the page title. 
+	 * @return boolean
+	 */
+	public boolean isPageTitle(String expected) {
+		String expectedTitle = getPageTitle();
+		if(expectedTitle.equalsIgnoreCase(expected))
+			return true;
+		else return false;
+	}
+	
+	/**
 	 * Method to used in AssertEquals, to check if we are in the correct page after 
 	 * a navigation task. This method should work most of the time, we will have
 	 * specific getText method for texts in tables (Cell base approach).  
