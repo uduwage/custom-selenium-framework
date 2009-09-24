@@ -90,7 +90,7 @@ public class LoginLogoutSolvent extends AbstractSolvent {
 	 */
 	public LoginLogoutSolvent yukonLogout() {
 		String logout = "//a[normalize-space(text())='Logout']";
-		selenium.waitForElement(logout);
+		selenium.waitForElement(logout, 2000);
 		if(!selenium.isElementPresent(logout, 2000))
 			throw new SeleniumException("Unable to find '" + logout + "' (logout) to click");
 		selenium.click(logout);
