@@ -43,8 +43,8 @@ public class YukonTopMenuSolvent extends AbstractSolvent {
 	 * @return
 	 */
 	public YukonTopMenuSolvent clickHome() {
-		String home = "//div[@class='stdhdr_rightSide']//a[normalize-space(text())='Home']";
-		selenium.waitForElement(home);
+		String home = "//div[@id='topMenu']//a[normalize-space(text())='Home']";
+		selenium.waitForElement(home, 2000);
 		if(!selenium.isElementPresent(home)) 
 			throw new SeleniumException("Could not find 'Home' link on the page");
 		selenium.click(home);
@@ -57,6 +57,7 @@ public class YukonTopMenuSolvent extends AbstractSolvent {
 	 */
 	public YukonTopMenuSolvent clickAllTrendsHome() {
 		String allTrendHome = "//a[normalize-space(text())='Home']";
+		selenium.waitForElement(allTrendHome, 2000);
 		if(!selenium.isElementPresent(allTrendHome))
 			throw new SeleniumException("Could not find 'Home' link on All Trends Page");
 		selenium.click(allTrendHome);
@@ -70,6 +71,7 @@ public class YukonTopMenuSolvent extends AbstractSolvent {
 	 */
 	public YukonTopMenuSolvent clickBreadcrumb(String bcrumbName) {
 		String linklocator = "//a[normalize-space(text())='" + bcrumbName + "']";
+		selenium.waitForElement(linklocator);
 		if(!selenium.isElementPresent(linklocator))
 			throw new SeleniumException("Could not find " + bcrumbName + "breadcrumb link.");
 		selenium.click(linklocator);
