@@ -23,6 +23,7 @@
 	
 	<!-- Target to creat the build directories pripr to the compile target -->
 	<target name="prepare" description="Creating necessary file structure for build process.">
+		<echo message="Creating necessary directory structure" />
 		<mkdir dir="${build.dir}"/>
 		<mkdir dir="${build.classes}"/>
 		<mkdir dir="${build.jar}"/>
