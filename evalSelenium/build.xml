@@ -31,6 +31,7 @@
 	</target>
 	
 	<target name="clean" description="Remoes all generated files.">
+		<echo message="Clean up process in action..." />
 		<delete dir="${build.dir}"/>
 	</target>
 	
@@ -43,6 +44,7 @@
 	
 	<target name="jar" depends="compile" 
 			description="Generates final jar">
+		<echo message="Generating necessary jar files" />
 		<copy todir="${build.jar}">
 			<fileset dir="lib" excludes="**/*.java"/>
 		</copy>
@@ -71,6 +73,7 @@
 	</target>
 	
 	<target name="test.selenium" depends="jar" description="target to execute all the selenium tests.">
+		<echo message="Getting ready to run selenium tests" />
 		<junit printsummary="yes">
 			<classpath>
 				<path refid="classpath"/>
