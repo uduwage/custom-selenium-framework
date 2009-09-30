@@ -19,6 +19,7 @@
 	
 	<path id="classpath">
 		<fileset dir="${build.lib}" includes="**/*.jar"></fileset>
+		<fileset dir="${build.classes}" includes="**/*.class"></fileset>
 	</path>
 	
 	<!-- Target to creat the build directories pripr to the compile target -->
