@@ -12,13 +12,13 @@
 	<property name="build.jar" value="${build.dir}/jar"/>
 	
 	<!-- depended jar files -->
-	<property name="build.lib" value="lib"/>
+	<property name="src.lib" value="lib"/>
 	
 	<!-- test report location -->
 	<property name="test.reports" value="${build.dir}/reports"/>
 	
 	<path id="classpath">
-		<fileset dir="${build.lib}" includes="**/*.jar"></fileset>
+		<fileset dir="${src.lib}" includes="**/*.jar"></fileset>
 		<fileset dir="${build.classes}" includes="**/*.class"></fileset>
 	</path>
 	
