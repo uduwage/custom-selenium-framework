@@ -6,12 +6,9 @@ package com.cooper.selenium.test;
 import java.io.FileNotFoundException;
 
 import junit.framework.Assert;
-import junit.textui.TestRunner;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import com.cooper.selenium.SeleniumDefaultProperties;
 import com.cooper.selenium.SolventSeleniumTestCase;
 import com.cooper.selenium.common.CommonSolvent;
 import com.cooper.selenium.common.LoginLogoutSolvent;
