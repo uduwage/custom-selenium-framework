@@ -33,7 +33,7 @@ public class WidgetSolvent extends AbstractSolvent {
 	}
 	
 	/**
-	 * Method can be used to minimze and expand the widgets on any page.
+	 * Method can be used to minimize and expand the widgets on any page.
 	 * @param widgetName Title/Name of the Widget
 	 * @return
 	 */
@@ -52,8 +52,8 @@ public class WidgetSolvent extends AbstractSolvent {
 	 */
 	private String getXpathBaseForWidgetMinMax(String widgetTitle) {
 		String baseLocator = "//div[contains(text(),'" + widgetTitle + "')]";
-		String minusLocator = baseLocator + "/preceding::img[@class='minMax' and contains(@id, 'minusImg')]";
-		String plusLocator = baseLocator + "/preceding::img[@class='minMax' and contains(@id, 'plusImg')]";
+		String minusLocator = baseLocator + "/preceding::img[@class='minMax' and contains(@id, 'minusImg')][1]";
+		String plusLocator = baseLocator + "/preceding::img[@class='minMax' and contains(@id, 'plusImg')][1]";
 		String plusMinusXpath = "";
 		if(selenium.isElementPresentAndVisible(minusLocator, 10000))
 			plusMinusXpath = minusLocator;

@@ -46,15 +46,15 @@ public class LoginLogoutSolvent extends AbstractSolvent {
 		String userLocator = "//table[@class='loginTable']//input[@id='USERNAME']";
 		String passLocator = "//table[@class='loginTable']//input[@name='PASSWORD']";
 		String submit = "//table[@class='loginTable']//input[@name='login']";
-		selenium.waitForElement(userLocator, 10000);
+		selenium.waitForElement(userLocator, 9000);
 		if(!selenium.isElementPresent(userLocator, 2000))
 			throw new SeleniumException("Can not find '" + userLocator + "' input field");
 		selenium.type(userLocator, userName);
-		selenium.waitForElement(passLocator, 2000);
+		selenium.waitForElement(passLocator, 9000);
 		if(!selenium.isElementPresent(passLocator, 2000))
 			throw new SeleniumException("Can not find '" + passLocator + "' input field"); 
 		selenium.type(passLocator, password);
-		selenium.waitForElement(submit, 2000);
+		selenium.waitForElement(submit, 9000);
 		if(!selenium.isElementPresent(submit, 2000))
 			throw new SeleniumException("Can not find '" + submit + "' button to click");
 		selenium.click(submit);
