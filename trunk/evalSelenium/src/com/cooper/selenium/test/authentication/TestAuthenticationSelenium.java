@@ -15,8 +15,8 @@ import com.cooper.selenium.common.LoginLogoutSolvent;
 import com.cooper.selenium.common.OperationsPageSolvent;
 import com.cooper.selenium.common.YukonTopMenuSolvent;
 import com.cooper.selenium.stars.StarsGeneralSolvent;
-import com.cooper.selenium.test.TestOperationsNavSelenium;
-import com.cooper.selenium.test.TestYukonTableSolventSelenium;
+import com.cooper.selenium.test.TestMeterSearchTableSolventSelenium;
+import com.cooper.selenium.test.navigation.TestOperationsNavSelenium;
 import com.thoughtworks.selenium.SeleniumException;
 
 /**
@@ -136,7 +136,7 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 	}
 	@Test
 	public void testMeterDeviceTable() {
-		TestYukonTableSolventSelenium table = new TestYukonTableSolventSelenium();
+		TestMeterSearchTableSolventSelenium table = new TestMeterSearchTableSolventSelenium();
 		table.testTable();
 	}
 }
