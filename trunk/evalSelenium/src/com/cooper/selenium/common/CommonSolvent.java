@@ -37,7 +37,9 @@ public class CommonSolvent extends AbstractSolvent {
 	 * @return page title.
 	 */
 	public String getPageTitle() {
-		return selenium.getTitle();
+		String getTitle = null;
+		getTitle = selenium.getTitle();
+		return getTitle;
 	}
 	
 	/**
