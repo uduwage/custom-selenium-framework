@@ -22,7 +22,7 @@ import com.thoughtworks.selenium.SeleniumException;
 import com.thoughtworks.selenium.Wait;
 
 /**
- * This calss is used for working spcifically Cooper Web Applications. It is setup 
+ * This class is used for working specifically Cooper Web Applications. It is setup 
  * where it will do all the communications with the Selenium Server. 
  * TODO: In future this class should extend the DefaultSelenium, and read host, Port etc
  * info from properties file.
