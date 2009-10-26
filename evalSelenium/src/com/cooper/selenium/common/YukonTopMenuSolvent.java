@@ -77,5 +77,19 @@ public class YukonTopMenuSolvent extends AbstractSolvent {
 		selenium.click(linklocator);
 		return this;
 	}
+	
+	/**
+	 * Click any menu item from top menu, example Metering, Biling, Scripts etc.
+	 * @param menuItem Menu name.
+	 * @return
+	 */
+	public YukonTopMenuSolvent clickTopMenuItem(String menuItem) {
+		String locator = "//div[@id='topMenu']//a[(text() = '" + menuItem + "')]";
+		selenium.waitForElement(locator);
+		if(!selenium.isElementPresent(locator))
+			throw new SeleniumException("Could not find top menu link " + menuItem);
+		selenium.click(locator);
+		return this;
+	}
 
 }
