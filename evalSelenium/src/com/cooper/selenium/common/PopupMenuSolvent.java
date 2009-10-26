@@ -42,7 +42,7 @@ public class PopupMenuSolvent extends AbstractSolvent {
 		if(getParams("menuId") != null)
 			menuXpath = "//*[@id='" + getParams("menuId") + "']";
 		else
-			menuXpath = "//div[@id='overDiv']";
+			menuXpath = "//div[@class='popUpDiv simplePopup thinBorder']";
 		
 		return menuXpath;
 	}
