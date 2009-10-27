@@ -3,7 +3,7 @@
  */
 package com.cooper.selenium.meetering;
 
-import com.cooper.selenium.common.CommonSolvent;
+import com.cooper.selenium.common.OperationsPageSolvent;
 import com.cooper.selenium.common.WidgetSolvent;
 import com.cooper.selenium.common.YukonTableSolvent;
 import com.thoughtworks.selenium.SeleniumException;
@@ -26,7 +26,7 @@ public class MeteringSolvent extends WidgetSolvent {
 
 	@Override
 	public void prepare() {
-		//nothing to do at this point.
+		this.navigateTo(new OperationsPageSolvent()).clickLinkItem("Metering");
 	}
 	
 	/**
