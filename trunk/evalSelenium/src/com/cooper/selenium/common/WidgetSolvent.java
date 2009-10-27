@@ -22,14 +22,9 @@ public class WidgetSolvent extends AbstractSolvent {
 		super(params);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.cooper.selenium.AbstractSolvent#prepare()
-	 */
 	@Override
 	public void prepare() {
-		// TODO Auto-generated method stub
-		////div[contains(text(),'Meter Information')]/preceding::img[@class='minMax' and contains(@id, 'minusImg')]
-
+		selenium.waitForPageToLoad();
 	}
 	
 	/**
@@ -51,7 +46,7 @@ public class WidgetSolvent extends AbstractSolvent {
 	 * @return XPath as a string.
 	 */
 	private String getXpathBaseForWidgetMinMax(String widgetTitle) {
-		String baseLocator = "//div[contains(text(),'" + widgetTitle + "')]";
+		String baseLocator = getXpathRootForWidgetTitle(widgetTitle);
 		String minusLocator = baseLocator + "/preceding::img[@class='minMax' and contains(@id, 'minusImg')][1]";
 		String plusLocator = baseLocator + "/preceding::img[@class='minMax' and contains(@id, 'plusImg')][1]";
 		String plusMinusXpath = "";
@@ -63,9 +58,19 @@ public class WidgetSolvent extends AbstractSolvent {
 		return plusMinusXpath;
 	}
 	
-	public String getWidgetTitle() {
-		String title = selenium.getAttribute("//div[@class='title boxContainer_title']");
+	public String getWidgetTitle(String widgetTitle) {
+		String title = selenium.getAttribute(getXpathRootForWidgetTitle(widgetTitle));
 		return title;
+	}
+	
+	/**
+	 * Construct Xpath root for the title of the widget.
+	 * @param widgetTitle title of the wideget.
+	 * @return root xpath for the title of the widget.
+	 */
+	protected String getXpathRootForWidgetTitle(String widgetTitle) {
+		String root = "//div[@class='title boxContainer_title' and contains(text(),'" + widgetTitle + "')]";
+		return root;
 	}
 	
 
