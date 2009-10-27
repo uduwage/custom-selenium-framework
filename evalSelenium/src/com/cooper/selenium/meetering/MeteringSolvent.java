@@ -60,6 +60,22 @@ public class MeteringSolvent extends WidgetSolvent {
 		return new YukonTableSolvent();
 	}
 	
+	/**
+	 * Click create button inside any widget available in Metering page.
+	 * @param widgetHeader Title of the widget.
+	 * @return
+	 */
+	public MeteringSolvent clickCreateByWidget(String widgetHeader) {
+		String inputLocator = "//input/following::div[contains(@id, 'widgetTitledContainer')]" + 
+								getXpathRootForWidgetTitle(widgetHeader) +
+									"/following::input[@value='Create'][1]";
+		selenium.waitForElement(inputLocator);
+		if(!selenium.isElementPresent(inputLocator))
+			throw new SeleniumException("Can not find create button under '" + widgetHeader + "'Widget.");
+		selenium.click(inputLocator);
+		return this;
+	}
+	
 	
 		
 }
