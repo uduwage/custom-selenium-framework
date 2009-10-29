@@ -21,6 +21,6 @@ public class TestMainSelenium extends SolventSeleniumTestCase {
 	 * @throws FileNotFoundException 
 	 */
 	public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-		org.junit.runner.JUnitCore.main("com.cooper.selenium.test.TestAuthenticationSelenium");
+		org.junit.runner.JUnitCore.main("com.cooper.selenium.test.authentication.TestAuthenticationSelenium");
 	}
 }
