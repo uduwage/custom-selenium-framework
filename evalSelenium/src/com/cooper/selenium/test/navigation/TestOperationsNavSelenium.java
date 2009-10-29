@@ -45,7 +45,7 @@ public class TestOperationsNavSelenium extends SolventSeleniumTestCase {
 			.navigateTo(new CommonSolvent()).enterText("Quick Search:", "Typing is working")
 											.enterText("Meter Number:", "Typing in meter number")
 											.enterText("Device Type:", "Typing device type")
-			.navigateTo(new MeteringSolvent()).clickMeterSearch();
+			.navigateTo(new MeteringSolvent()).clickCreateByWidget("Tamper Flag Monitors").clickMeterSearch();
 		Assert.assertEquals("Edit Filters", 
 				new CommonSolvent().getYukonText("Edit Filters"));
 			operationsPageSolvent.navigateTo(new YukonTopMenuSolvent().clickHome());
