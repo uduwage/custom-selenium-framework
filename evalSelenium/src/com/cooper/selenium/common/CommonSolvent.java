@@ -28,7 +28,7 @@ public class CommonSolvent extends AbstractSolvent {
 	 */
 	@Override
 	public void prepare() {
-		//nothing at this point.
+		//nothing to do at this time.
 	}
 	
 	/**
@@ -38,6 +38,7 @@ public class CommonSolvent extends AbstractSolvent {
 	 */
 	public String getPageTitle() {
 		String getTitle = null;
+		selenium.waitForElement("//title");
 		getTitle = selenium.getTitle();
 		return getTitle;
 	}
