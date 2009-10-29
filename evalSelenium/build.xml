@@ -10,6 +10,8 @@
 	<property name="build.dir" value="/YukonSelenium"/>
 	<property name="build.classes" value="${build.dir}/classes"/>
 	<property name="build.jar" value="${build.dir}/jar"/>
+	<property name="testng.output" value="${build.dir}/testng"/>
+	<property name="copy.src" value="/yukonSelenium.src"/>
 	
 	<!-- depended jar files -->
 	<property name="src.lib" value="lib"/>
@@ -19,7 +21,7 @@
 	
 	<path id="classpath">
 		<fileset dir="${src.lib}" includes="**/*.jar"></fileset>
-		<fileset dir="${build.classes}" includes="**/*.class"></fileset>
+		<!-- <fileset dir="${build.classes}" includes="**/*.class"></fileset> -->
 	</path>
 	
 	<!-- Target to creat the build directories pripr to the compile target -->
@@ -29,11 +31,14 @@
 		<mkdir dir="${build.classes}"/>
 		<mkdir dir="${build.jar}"/>
 		<mkdir dir="${test.reports}"/>
+		<mkdir dir="${testng.output}" />
+		<mkdir dir="${copy.src}"/>
 	</target>
 	
 	<target name="clean" description="Remoes all generated files.">
 		<echo message="Clean up process in action..." />
 		<delete dir="${build.dir}"/>
+		<delete dir="${copy.src}" />
 	</target>
 	
 	<target name="compile" depends="prepare" description="Compiles all source code.">
@@ -55,7 +60,7 @@
 			<manifest>
 				<attribute name="Main-Class" value="com.cooper.selenium.test.TestMainSelenium"/>
 				<attribute name="Class-Path" 
-					value=". /c:/YukonSelenium/jar/log4j-1.2.15.jar /c:/YukonSelenium/jar/junit-4.6.jar /c:/YukonSelenium/jar/selenium-java-client-driver.jar /c:/YukonSelenium/jar/dom4j-1.6.1.jar"/>
+					value=". /c:/YukonSelenium/jar/log4j-1.2.15.jar /c:/YukonSelenium/jar/junit-4.6.jar /c:/YukonSelenium/jar/selenium-java-client-driver.jar /c:/YukonSelenium/jar/dom4j-1.6.1.jar /c:/YukonSelenium/jar/testng-5.10-jdk15.jar"/>
 			</manifest>
 		</jar>
 	</target>
@@ -86,12 +91,33 @@
 		</junit>
 	</target>
 	
-	<target name="test-report" depends="build-all" description="Generate Test Results as HTML">
+	<target name="ensure-test-name" unless="test">
+		<fail message="You must run this target with -Dtest=TestName"/>
+	</target>
+	
+	<target name="runtest" description="Runs single selenium test with -Dtest=" depends="compile, jar, ensure-test-name">
+		<junit printsummary="withOutAndErr" fork="yes">
+			<classpath>
+				<path refid="classpath"/>
+				<path refid="application"/>
+			</classpath>
+			<formatter type="plain" usefile="false"/>
+			<batchtest>
+				<fileset dir="${src.dir}">
+					<include name="**/${test}Selenium.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
+	<target name="test-report" depends="compile" description="Generate Test Results as HTML">
+		
+		<taskdef name="junitreport" classname="org.apache.tools.ant.taskdefs.optional.junit.XMLResultAggregator"/>
 		<junit fork="yes" printsummary="yes">
 			<batchtest fork="yes" todir="${test.reports}">
 				<fileset dir="${src.dir}" includes="**/Test*Selenium.java"/>
 			</batchtest>
-			<formatter type="xml"/>
+			<formatter type="xml" usefile="true"/>
 			<classpath>
 				<path refid="classpath"/>
 				<path refid="application"/>
@@ -102,7 +128,27 @@
 			<fileset dir="${test.reports}">
 				<include name="Test-*.xml" />
 			</fileset>
-			<report todir="${test.reports}"/>
+			<report format="frames" todir="${test.reports}"/>
 		</junitreport>
 	</target>
+	
+	<target name="copy-src" depends="prepare">
+		<copy todir="${copy.src}">
+			<fileset dir="${basedir}" excludes="*.csv"/>
+		</copy>		
+	</target>
+	<!-- TestNG Target
+	<taskdef name="testng" classname="com.beust.testng.TestNGAntTask" classpathref="classpath"/>
+	<path id="runpath">
+		<path refid="classpath" />
+		<pathelement location="{${build.classes}"/>
+	</path>
+	<target name="run-testng" depends="jar">
+		<echo message="Running TestNG tests"/>
+		<testng classpathref="runpath" outputdir="{${testng.output}" >
+			<xmlfileset dir="${src.dir}" includes="**/testng.xml"/>
+			<classfileset dir="${src.dir}" includes="**/TestNG*Selenium.java" />
+		</testng>
+	</target>
+	-->
 </project>
