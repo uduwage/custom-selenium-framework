@@ -83,7 +83,7 @@ public class TestAuthenticationSelenium extends SolventSeleniumTestCase {
 					loginLogoutSolvent.yukonLogout();
 				}
 				else 
-					throw new SeleniumException("Something worng with the users");
+					throw new SeleniumException("Something worng with the users and password check the xml file.");
 				
 			}
 		}
